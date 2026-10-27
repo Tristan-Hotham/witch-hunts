@@ -1,0 +1,1844 @@
+{
+ "total": {
+  "cases": 3413,
+  "people": 3840,
+  "named": 3212,
+  "unnamed_people": 628,
+  "unnamed_cases": 201,
+  "undated_cases": 14,
+  "undated_people": 13,
+  "first_year": 1560,
+  "last_year": 1727,
+  "before_1563_people": 6,
+  "unnamed_default3_cases": 109,
+  "start_year_differs": 371
+ },
+ "series": {
+  "people_1563_1736": 3821,
+  "years": 174,
+  "zero_years": 33,
+  "median_year": 5.0,
+  "mean_year": 22.0,
+  "peak_year": 1649,
+  "peak_people": 565,
+  "years_over_100": [
+   1597,
+   1629,
+   1630,
+   1643,
+   1649,
+   1650,
+   1661,
+   1662
+  ],
+  "panic_people": 2181,
+  "panic_year_count": 11,
+  "panic_share": 0.5708,
+  "corr_case_vs_start_year": 0.995,
+  "top_years": [
+   {
+    "year": 1649,
+    "people": 565
+   },
+   {
+    "year": 1662,
+    "people": 424
+   },
+   {
+    "year": 1650,
+    "people": 280
+   },
+   {
+    "year": 1661,
+    "people": 262
+   },
+   {
+    "year": 1629,
+    "people": 180
+   },
+   {
+    "year": 1643,
+    "people": 134
+   },
+   {
+    "year": 1597,
+    "people": 130
+   },
+   {
+    "year": 1630,
+    "people": 114
+   },
+   {
+    "year": 1659,
+    "people": 94
+   },
+   {
+    "year": 1591,
+    "people": 88
+   },
+   {
+    "year": 1644,
+    "people": 83
+   },
+   {
+    "year": 1658,
+    "people": 76
+   }
+  ],
+  "spike_threshold": 149.8,
+  "spike_years": [
+   1629,
+   1649,
+   1650,
+   1661,
+   1662
+  ]
+ },
+ "panics": [
+  {
+   "people": 124,
+   "named": 105,
+   "women": 76,
+   "men": 24,
+   "women_share": 0.76,
+   "outcome_known": 15,
+   "executed": 9,
+   "executed_share_known": 0.6,
+   "tortured": 3,
+   "pricked": 0,
+   "geocoded": 98,
+   "within50_edinburgh": 75,
+   "within50_share": 0.7653,
+   "median_km_edinburgh": 25.2,
+   "top_counties": [
+    {
+     "county": "Haddington",
+     "n": 60
+    },
+    {
+     "county": "Ross",
+     "n": 11
+    },
+    {
+     "county": "Edinburgh",
+     "n": 10
+    },
+    {
+     "county": "Aberdeen",
+     "n": 7
+    },
+    {
+     "county": "Stirling",
+     "n": 4
+    }
+   ],
+   "counties_n": 9,
+   "label": "1590 to 1591",
+   "start": 1590,
+   "end": 1591,
+   "title": "North Berwick and the royal voyage",
+   "t_annual_onset": 0.155,
+   "t_winter_onset": -0.728,
+   "t_annual_prev": -0.047,
+   "hp_annual_onset": 0.211,
+   "hp_annual_prev": 0.015,
+   "onset_cold_rank": 114,
+   "prev_cold_rank": 68
+  },
+  {
+   "people": 130,
+   "named": 112,
+   "women": 97,
+   "men": 14,
+   "women_share": 0.8739,
+   "outcome_known": 44,
+   "executed": 27,
+   "executed_share_known": 0.6136,
+   "tortured": 0,
+   "pricked": 1,
+   "geocoded": 112,
+   "within50_edinburgh": 35,
+   "within50_share": 0.3125,
+   "median_km_edinburgh": 135.1,
+   "top_counties": [
+    {
+     "county": "Aberdeen",
+     "n": 78
+    },
+    {
+     "county": "Fife",
+     "n": 25
+    },
+    {
+     "county": "Edinburgh",
+     "n": 5
+    },
+    {
+     "county": "Stirling",
+     "n": 3
+    }
+   ],
+   "counties_n": 4,
+   "label": "1597",
+   "start": 1597,
+   "end": 1597,
+   "title": "The great hunt of 1597",
+   "t_annual_onset": -0.302,
+   "t_winter_onset": 1.657,
+   "t_annual_prev": 0.386,
+   "hp_annual_onset": -0.242,
+   "hp_annual_prev": 0.441,
+   "onset_cold_rank": 31,
+   "prev_cold_rank": 152
+  },
+  {
+   "people": 396,
+   "named": 387,
+   "women": 328,
+   "men": 55,
+   "women_share": 0.8564,
+   "outcome_known": 47,
+   "executed": 28,
+   "executed_share_known": 0.5957,
+   "tortured": 2,
+   "pricked": 2,
+   "geocoded": 381,
+   "within50_edinburgh": 195,
+   "within50_share": 0.5118,
+   "median_km_edinburgh": 49.5,
+   "top_counties": [
+    {
+     "county": "Edinburgh",
+     "n": 62
+    },
+    {
+     "county": "Berwick",
+     "n": 53
+    },
+    {
+     "county": "Haddington",
+     "n": 51
+    },
+    {
+     "county": "Peebles",
+     "n": 30
+    },
+    {
+     "county": "Dumfries",
+     "n": 25
+    }
+   ],
+   "counties_n": 25,
+   "label": "1628 to 1631",
+   "start": 1628,
+   "end": 1631,
+   "title": "The Lothians and the Borders",
+   "t_annual_onset": 0.01,
+   "t_winter_onset": 1.055,
+   "t_annual_prev": -0.598,
+   "hp_annual_onset": 0.026,
+   "hp_annual_prev": -0.584,
+   "onset_cold_rank": 78,
+   "prev_cold_rank": 16
+  },
+  {
+   "people": 845,
+   "named": 557,
+   "women": 474,
+   "men": 80,
+   "women_share": 0.8556,
+   "outcome_known": 31,
+   "executed": 9,
+   "executed_share_known": 0.2903,
+   "tortured": 3,
+   "pricked": 35,
+   "geocoded": 553,
+   "within50_edinburgh": 383,
+   "within50_share": 0.6926,
+   "median_km_edinburgh": 25.2,
+   "top_counties": [
+    {
+     "county": "Haddington",
+     "n": 160
+    },
+    {
+     "county": "Edinburgh",
+     "n": 79
+    },
+    {
+     "county": "Fife",
+     "n": 71
+    },
+    {
+     "county": "Peebles",
+     "n": 44
+    },
+    {
+     "county": "Ayr",
+     "n": 38
+    }
+   ],
+   "counties_n": 22,
+   "label": "1649 to 1650",
+   "start": 1649,
+   "end": 1650,
+   "title": "The Covenanters' hunt",
+   "t_annual_onset": -0.309,
+   "t_winter_onset": -0.786,
+   "t_annual_prev": 0.144,
+   "hp_annual_onset": -0.31,
+   "hp_annual_prev": 0.142,
+   "onset_cold_rank": 30,
+   "prev_cold_rank": 108
+  },
+  {
+   "people": 686,
+   "named": 638,
+   "women": 547,
+   "men": 82,
+   "women_share": 0.8696,
+   "outcome_known": 64,
+   "executed": 41,
+   "executed_share_known": 0.6406,
+   "tortured": 20,
+   "pricked": 33,
+   "geocoded": 617,
+   "within50_edinburgh": 380,
+   "within50_share": 0.6159,
+   "median_km_edinburgh": 34.5,
+   "top_counties": [
+    {
+     "county": "Haddington",
+     "n": 154
+    },
+    {
+     "county": "Edinburgh",
+     "n": 123
+    },
+    {
+     "county": "Perth",
+     "n": 57
+    },
+    {
+     "county": "Nairn",
+     "n": 51
+    },
+    {
+     "county": "Bute",
+     "n": 46
+    }
+   ],
+   "counties_n": 21,
+   "label": "1661 to 1662",
+   "start": 1661,
+   "end": 1662,
+   "title": "The Restoration panic",
+   "t_annual_onset": 0.651,
+   "t_winter_onset": 1.174,
+   "t_annual_prev": -0.14,
+   "hp_annual_onset": 0.623,
+   "hp_annual_prev": -0.175,
+   "onset_cold_rank": 172,
+   "prev_cold_rank": 46
+  }
+ ],
+ "all": {
+  "people": 3821,
+  "named": 3196,
+  "women": 2687,
+  "men": 463,
+  "women_share": 0.853,
+  "outcome_known": 524,
+  "executed": 247,
+  "executed_share_known": 0.4714,
+  "tortured": 52,
+  "pricked": 105,
+  "geocoded": 3117,
+  "within50_edinburgh": 1678,
+  "within50_share": 0.5383,
+  "median_km_edinburgh": 47.4,
+  "top_counties": [
+   {
+    "county": "Haddington",
+    "n": 543
+   },
+   {
+    "county": "Fife",
+    "n": 376
+   },
+   {
+    "county": "Edinburgh",
+    "n": 371
+   },
+   {
+    "county": "Aberdeen",
+    "n": 174
+   },
+   {
+    "county": "Ayr",
+    "n": 153
+   }
+  ],
+  "counties_n": 34
+ },
+ "all_incl_undated": {
+  "people": 3840,
+  "named": 3212,
+  "women": 2697,
+  "men": 468,
+  "women_share": 0.8521,
+  "outcome_known": 525,
+  "executed": 248,
+  "executed_share_known": 0.4724,
+  "tortured": 52,
+  "pricked": 105,
+  "geocoded": 3133,
+  "within50_edinburgh": 1686,
+  "within50_share": 0.5381,
+  "median_km_edinburgh": 48.1,
+  "top_counties": [
+   {
+    "county": "Haddington",
+    "n": 543
+   },
+   {
+    "county": "Fife",
+    "n": 381
+   },
+   {
+    "county": "Edinburgh",
+    "n": 372
+   },
+   {
+    "county": "Aberdeen",
+    "n": 175
+   },
+   {
+    "county": "Ayr",
+    "n": 153
+   }
+  ],
+  "counties_n": 34
+ },
+ "nonpanic": {
+  "people": 1640,
+  "named": 1397,
+  "women": 1165,
+  "men": 208,
+  "women_share": 0.8485,
+  "outcome_known": 323,
+  "executed": 133,
+  "executed_share_known": 0.4118,
+  "tortured": 24,
+  "pricked": 34,
+  "geocoded": 1356,
+  "within50_edinburgh": 610,
+  "within50_share": 0.4499,
+  "median_km_edinburgh": 65.4,
+  "top_counties": [
+   {
+    "county": "Fife",
+    "n": 225
+   },
+   {
+    "county": "Haddington",
+    "n": 118
+   },
+   {
+    "county": "Ayr",
+    "n": 98
+   },
+   {
+    "county": "Edinburgh",
+    "n": 92
+   },
+   {
+    "county": "Renfrew",
+    "n": 84
+   }
+  ],
+  "counties_n": 32
+ },
+ "panic_all": {
+  "people": 2181,
+  "named": 1799,
+  "women": 1522,
+  "men": 255,
+  "women_share": 0.8565,
+  "outcome_known": 201,
+  "executed": 114,
+  "executed_share_known": 0.5672,
+  "tortured": 28,
+  "pricked": 71,
+  "geocoded": 1761,
+  "within50_edinburgh": 1068,
+  "within50_share": 0.6065,
+  "median_km_edinburgh": 34.5,
+  "top_counties": [
+   {
+    "county": "Haddington",
+    "n": 425
+   },
+   {
+    "county": "Edinburgh",
+    "n": 279
+   },
+   {
+    "county": "Fife",
+    "n": 151
+   },
+   {
+    "county": "Aberdeen",
+    "n": 114
+   },
+   {
+    "county": "Berwick",
+    "n": 98
+   }
+  ],
+  "counties_n": 32
+ },
+ "outcomes": {
+  "Not recorded": 2310,
+  "No trial record": 377,
+  "Executed": 248,
+  "Acquitted or released": 90,
+  "Fled or declared fugitive": 90,
+  "Action dropped": 36,
+  "Other punishment": 36,
+  "Guilty, sentence not recorded": 25
+ },
+ "outcomes_known": 525,
+ "executed": 248,
+ "executed_share_known": 0.4724,
+ "execution_methods": {
+  "Strangle & Burn": 124,
+  "Burn": 46,
+  "Beheading": 3,
+  "Hang": 1
+ },
+ "tortured": 52,
+ "torture_types": {
+  "Sleep Deprivation": 22,
+  "Unspecified": 19,
+  "Burning feet": 14,
+  "Bound with ropes": 12,
+  "Hanging by thumbs": 12,
+  "Whip": 12,
+  "Stocks": 9,
+  "Irons": 3,
+  "Tied to pole": 1,
+  "Bow strings": 1,
+  "Wedges on the shins": 1,
+  "Cashielaws": 1,
+  "Various": 1,
+  "Haircloth": 1
+ },
+ "pricked": 105,
+ "marital": {
+  "Married": 575,
+  "Widowed": 140,
+  "Single": 16,
+  "Irregular union": 2,
+  "/": 1
+ },
+ "age": {
+  "n": 166,
+  "median": 45.0,
+  "share_50plus": 0.41
+ },
+ "socio": {
+  "Middling": 231,
+  "Lower": 72,
+  "Very Poor": 18,
+  "Upper": 16,
+  "Landless": 16,
+  "Lairds/Baron": 5,
+  "Nobility/Chiefs": 4
+ },
+ "occupation_n": 101,
+ "sex": {
+  "female": 2697,
+  "male": 468,
+  "unknown": 47,
+  "women_share": 0.8521
+ },
+ "women_panic_vs_other_p": 0.563616673313682,
+ "exec_panic_vs_other": {
+  "panic": 0.5672,
+  "other": 0.4118
+ },
+ "geo": {
+  "geocoded": 3133,
+  "named": 3212,
+  "share": 0.9754,
+  "places": 737,
+  "within50_edinburgh": 1686,
+  "within50_share": 0.5381,
+  "north_of_tay": 673,
+  "north_of_tay_share": 0.2148,
+  "highlands_west_of_4_5_north_56_5": 68
+ },
+ "counties": [
+  {
+   "county": "Haddington",
+   "n": 543
+  },
+  {
+   "county": "Fife",
+   "n": 381
+  },
+  {
+   "county": "Edinburgh",
+   "n": 372
+  },
+  {
+   "county": "Aberdeen",
+   "n": 175
+  },
+  {
+   "county": "Ayr",
+   "n": 153
+  },
+  {
+   "county": "Berwick",
+   "n": 126
+  },
+  {
+   "county": "Renfrew",
+   "n": 124
+  },
+  {
+   "county": "Linlithgow",
+   "n": 114
+  },
+  {
+   "county": "Perth",
+   "n": 109
+  },
+  {
+   "county": "Peebles",
+   "n": 90
+  },
+  {
+   "county": "Forfar",
+   "n": 82
+  },
+  {
+   "county": "Dumfries",
+   "n": 77
+  },
+  {
+   "county": "Lanark",
+   "n": 77
+  },
+  {
+   "county": "Ross",
+   "n": 74
+  },
+  {
+   "county": "Orkney",
+   "n": 72
+  },
+  {
+   "county": "Roxburgh",
+   "n": 60
+  },
+  {
+   "county": "Nairn",
+   "n": 55
+  },
+  {
+   "county": "Bute",
+   "n": 54
+  },
+  {
+   "county": "Stirling",
+   "n": 53
+  },
+  {
+   "county": "Caithness",
+   "n": 52
+  },
+  {
+   "county": "Inverness",
+   "n": 45
+  },
+  {
+   "county": "Kirkcudbright",
+   "n": 35
+  },
+  {
+   "county": "Elgin",
+   "n": 28
+  },
+  {
+   "county": "Shetland",
+   "n": 28
+  },
+  {
+   "county": "Dunbarton",
+   "n": 25
+  },
+  {
+   "county": "Selkirk",
+   "n": 21
+  },
+  {
+   "county": "Clackmannan",
+   "n": 18
+  },
+  {
+   "county": "Wigtown",
+   "n": 15
+  },
+  {
+   "county": "Sutherland",
+   "n": 15
+  },
+  {
+   "county": "Banff",
+   "n": 9
+  },
+  {
+   "county": "Kinross",
+   "n": 7
+  },
+  {
+   "county": "Argyll",
+   "n": 6
+  },
+  {
+   "county": "Kincardine",
+   "n": 2
+  },
+  {
+   "county": "Cromarty",
+   "n": 2
+  }
+ ],
+ "county_top3_share": 0.4182,
+ "top_places": [
+  {
+   "place": "Haddington",
+   "n": 218,
+   "county": "Haddington"
+  },
+  {
+   "place": "Aberdeen",
+   "n": 64,
+   "county": "Aberdeen"
+  },
+  {
+   "place": "Edinburgh",
+   "n": 46,
+   "county": "Edinburgh"
+  },
+  {
+   "place": "Dalkeith",
+   "n": 45,
+   "county": "Edinburgh"
+  },
+  {
+   "place": "Dumfries",
+   "n": 44,
+   "county": "Dumfries"
+  },
+  {
+   "place": "Pencaitland",
+   "n": 41,
+   "county": "Haddington"
+  },
+  {
+   "place": "Inverkeithing",
+   "n": 41,
+   "county": "Fife"
+  },
+  {
+   "place": "Dunfermline",
+   "n": 40,
+   "county": "Fife"
+  },
+  {
+   "place": "Prestonpans",
+   "n": 38,
+   "county": "Haddington"
+  },
+  {
+   "place": "Dysart",
+   "n": 36,
+   "county": "Fife"
+  },
+  {
+   "place": "Kirkcaldy",
+   "n": 34,
+   "county": "Fife"
+  },
+  {
+   "place": "Isle of Bute",
+   "n": 34,
+   "county": "Bute"
+  }
+ ],
+ "parishes": {
+  "with_parish": 2105,
+  "n_parishes": 362,
+  "top": [
+   {
+    "parish": "Haddington",
+    "n": 69,
+    "county": "Haddington"
+   },
+   {
+    "parish": "Pencaitland",
+    "n": 46,
+    "county": "Haddington"
+   },
+   {
+    "parish": "Auldearn",
+    "n": 45,
+    "county": "Nairn"
+   },
+   {
+    "parish": "Inverkeithing",
+    "n": 43,
+    "county": "Fife"
+   },
+   {
+    "parish": "Liberton",
+    "n": 41,
+    "county": "Edinburgh"
+   },
+   {
+    "parish": "Prestonpans",
+    "n": 39,
+    "county": "Haddington"
+   },
+   {
+    "parish": "Dysart",
+    "n": 37,
+    "county": "Fife"
+   },
+   {
+    "parish": "Inverkip",
+    "n": 35,
+    "county": "Renfrew"
+   },
+   {
+    "parish": "Bo'ness",
+    "n": 33,
+    "county": "Linlithgow"
+   },
+   {
+    "parish": "Dunfermline",
+    "n": 33,
+    "county": "Fife"
+   },
+   {
+    "parish": "Culross",
+    "n": 32,
+    "county": "Fife"
+   },
+   {
+    "parish": "Kirkcaldy",
+    "n": 31,
+    "county": "Fife"
+   }
+  ],
+  "parishes_10plus": 63
+ },
+ "kde": {
+  "bandwidth_km": 8.0,
+  "levels_per_100km2": [
+   0.05,
+   0.15,
+   0.4,
+   1.0,
+   2.5
+  ],
+  "grid_km": 2,
+  "peak_all": 109.81
+ },
+ "corr": [
+  {
+   "season": "winter",
+   "lag": 0,
+   "kind": "anomaly",
+   "spearman": -0.07,
+   "p_circular": 0.394
+  },
+  {
+   "season": "winter",
+   "lag": 0,
+   "kind": "year_to_year",
+   "spearman": 0.001,
+   "p_circular": 0.987
+  },
+  {
+   "season": "winter",
+   "lag": 1,
+   "kind": "anomaly",
+   "spearman": 0.02,
+   "p_circular": 0.768
+  },
+  {
+   "season": "winter",
+   "lag": 1,
+   "kind": "year_to_year",
+   "spearman": 0.089,
+   "p_circular": 0.129
+  },
+  {
+   "season": "winter",
+   "lag": 2,
+   "kind": "anomaly",
+   "spearman": -0.005,
+   "p_circular": 0.929
+  },
+  {
+   "season": "winter",
+   "lag": 2,
+   "kind": "year_to_year",
+   "spearman": 0.063,
+   "p_circular": 0.29
+  },
+  {
+   "season": "spring",
+   "lag": 0,
+   "kind": "anomaly",
+   "spearman": 0.015,
+   "p_circular": 0.929
+  },
+  {
+   "season": "spring",
+   "lag": 0,
+   "kind": "year_to_year",
+   "spearman": -0.047,
+   "p_circular": 0.477
+  },
+  {
+   "season": "spring",
+   "lag": 1,
+   "kind": "anomaly",
+   "spearman": -0.024,
+   "p_circular": 0.897
+  },
+  {
+   "season": "spring",
+   "lag": 1,
+   "kind": "year_to_year",
+   "spearman": -0.097,
+   "p_circular": 0.135
+  },
+  {
+   "season": "spring",
+   "lag": 2,
+   "kind": "anomaly",
+   "spearman": 0.011,
+   "p_circular": 0.948
+  },
+  {
+   "season": "spring",
+   "lag": 2,
+   "kind": "year_to_year",
+   "spearman": -0.066,
+   "p_circular": 0.31
+  },
+  {
+   "season": "summer",
+   "lag": 0,
+   "kind": "anomaly",
+   "spearman": 0.133,
+   "p_circular": 0.168
+  },
+  {
+   "season": "summer",
+   "lag": 0,
+   "kind": "year_to_year",
+   "spearman": 0.058,
+   "p_circular": 0.4
+  },
+  {
+   "season": "summer",
+   "lag": 1,
+   "kind": "anomaly",
+   "spearman": 0.061,
+   "p_circular": 0.632
+  },
+  {
+   "season": "summer",
+   "lag": 1,
+   "kind": "year_to_year",
+   "spearman": -0.001,
+   "p_circular": 1.0
+  },
+  {
+   "season": "summer",
+   "lag": 2,
+   "kind": "anomaly",
+   "spearman": 0.043,
+   "p_circular": 0.735
+  },
+  {
+   "season": "summer",
+   "lag": 2,
+   "kind": "year_to_year",
+   "spearman": -0.016,
+   "p_circular": 0.819
+  },
+  {
+   "season": "autumn",
+   "lag": 0,
+   "kind": "anomaly",
+   "spearman": 0.013,
+   "p_circular": 0.813
+  },
+  {
+   "season": "autumn",
+   "lag": 0,
+   "kind": "year_to_year",
+   "spearman": 0.036,
+   "p_circular": 0.542
+  },
+  {
+   "season": "autumn",
+   "lag": 1,
+   "kind": "anomaly",
+   "spearman": 0.04,
+   "p_circular": 0.548
+  },
+  {
+   "season": "autumn",
+   "lag": 1,
+   "kind": "year_to_year",
+   "spearman": 0.065,
+   "p_circular": 0.271
+  },
+  {
+   "season": "autumn",
+   "lag": 2,
+   "kind": "anomaly",
+   "spearman": -0.006,
+   "p_circular": 0.903
+  },
+  {
+   "season": "autumn",
+   "lag": 2,
+   "kind": "year_to_year",
+   "spearman": 0.008,
+   "p_circular": 0.877
+  },
+  {
+   "season": "annual",
+   "lag": 0,
+   "kind": "anomaly",
+   "spearman": -0.078,
+   "p_circular": 0.271
+  },
+  {
+   "season": "annual",
+   "lag": 0,
+   "kind": "year_to_year",
+   "spearman": -0.008,
+   "p_circular": 0.871
+  },
+  {
+   "season": "annual",
+   "lag": 1,
+   "kind": "anomaly",
+   "spearman": -0.028,
+   "p_circular": 0.69
+  },
+  {
+   "season": "annual",
+   "lag": 1,
+   "kind": "year_to_year",
+   "spearman": 0.042,
+   "p_circular": 0.555
+  },
+  {
+   "season": "annual",
+   "lag": 2,
+   "kind": "anomaly",
+   "spearman": -0.002,
+   "p_circular": 0.968
+  },
+  {
+   "season": "annual",
+   "lag": 2,
+   "kind": "year_to_year",
+   "spearman": 0.052,
+   "p_circular": 0.445
+  }
+ ],
+ "corr_n_shifts": 155,
+ "corr_min_p": 0.129,
+ "corr_n_tests": 30,
+ "corr_n_p05": 0,
+ "corr_head": {
+  "annual_lag0": {
+   "season": "annual",
+   "lag": 0,
+   "kind": "anomaly",
+   "spearman": -0.078,
+   "p_circular": 0.271
+  },
+  "annual_lag1": {
+   "season": "annual",
+   "lag": 1,
+   "kind": "anomaly",
+   "spearman": -0.028,
+   "p_circular": 0.69
+  },
+  "winter_lag0": {
+   "season": "winter",
+   "lag": 0,
+   "kind": "anomaly",
+   "spearman": -0.07,
+   "p_circular": 0.394
+  },
+  "summer_lag1": {
+   "season": "summer",
+   "lag": 1,
+   "kind": "anomaly",
+   "spearman": 0.061,
+   "p_circular": 0.632
+  },
+  "annual_hp_lag0": {
+   "season": "annual",
+   "lag": 0,
+   "kind": "year_to_year",
+   "spearman": -0.008,
+   "p_circular": 0.871
+  },
+  "annual_hp_lag1": {
+   "season": "annual",
+   "lag": 1,
+   "kind": "year_to_year",
+   "spearman": 0.042,
+   "p_circular": 0.555
+  }
+ },
+ "annual_phase_p": 0.246,
+ "decadal": {
+  "phase_r_annual": -0.206,
+  "phase_p_annual": 0.1474,
+  "phase_r_winter": -0.256,
+  "phase_p_winter": 0.3135,
+  "pre1700_r_annual": 0.146,
+  "pre1700_p_annual": 0.6745,
+  "pre1700_r_winter": 0.116,
+  "pre1700_p_winter": 0.7963,
+  "n": 16,
+  "r_annual": -0.206,
+  "p_annual": 0.154,
+  "r_winter": -0.256,
+  "p_winter": 0.385,
+  "rows": [
+   {
+    "decade": 1570,
+    "people": 36,
+    "t_annual": 8.046
+   },
+   {
+    "decade": 1580,
+    "people": 34,
+    "t_annual": 8.138
+   },
+   {
+    "decade": 1590,
+    "people": 306,
+    "t_annual": 7.987
+   },
+   {
+    "decade": 1600,
+    "people": 60,
+    "t_annual": 8.04
+   },
+   {
+    "decade": 1610,
+    "people": 116,
+    "t_annual": 8.2
+   },
+   {
+    "decade": 1620,
+    "people": 408,
+    "t_annual": 8.066
+   },
+   {
+    "decade": 1630,
+    "people": 255,
+    "t_annual": 8.151
+   },
+   {
+    "decade": 1640,
+    "people": 850,
+    "t_annual": 8.072
+   },
+   {
+    "decade": 1650,
+    "people": 505,
+    "t_annual": 8.088
+   },
+   {
+    "decade": 1660,
+    "people": 740,
+    "t_annual": 8.207
+   },
+   {
+    "decade": 1670,
+    "people": 191,
+    "t_annual": 8.142
+   },
+   {
+    "decade": 1680,
+    "people": 35,
+    "t_annual": 8.088
+   },
+   {
+    "decade": 1690,
+    "people": 112,
+    "t_annual": 7.857
+   },
+   {
+    "decade": 1700,
+    "people": 94,
+    "t_annual": 8.263
+   },
+   {
+    "decade": 1710,
+    "people": 11,
+    "t_annual": 8.124
+   },
+   {
+    "decade": 1720,
+    "people": 15,
+    "t_annual": 8.345
+   }
+  ]
+ },
+ "panic_vs_other_temp": {
+  "winter": {
+   "panic": 0.584,
+   "other": -0.04
+  },
+  "spring": {
+   "panic": 0.056,
+   "other": -0.004
+  },
+  "summer": {
+   "panic": 0.128,
+   "other": -0.008
+  },
+  "autumn": {
+   "panic": 0.069,
+   "other": -0.004
+  },
+  "annual": {
+   "panic": 0.155,
+   "other": -0.01
+  }
+ },
+ "sea_familywise_p": 0.253,
+ "sea_n_tests": 30,
+ "onsets_colder_than_mean": {
+  "onset_year": 2,
+  "year_before": 3,
+  "summer_before": 4,
+  "winter_onset": 2
+ },
+ "sea_summer_prev": [
+  {
+   "onset": 1590,
+   "summer_prev": -0.053
+  },
+  {
+   "onset": 1597,
+   "summer_prev": -0.645
+  },
+  {
+   "onset": 1628,
+   "summer_prev": -0.546
+  },
+  {
+   "onset": 1649,
+   "summer_prev": -0.229
+  },
+  {
+   "onset": 1661,
+   "summer_prev": 0.053
+  }
+ ],
+ "sea": {
+  "lags": [
+   -5,
+   -4,
+   -3,
+   -2,
+   -1,
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "onsets": [
+   1590,
+   1597,
+   1628,
+   1649,
+   1661
+  ],
+  "n_sim": 20000,
+  "eligible_years": [
+   1568,
+   1731
+  ],
+  "res": {
+   "winter|anomaly": {
+    "comp": [
+     0.382,
+     -0.602,
+     -0.575,
+     -0.059,
+     -0.212,
+     0.475,
+     0.484,
+     -0.215,
+     -0.331,
+     -0.462,
+     0.063
+    ],
+    "lo": [
+     -1.092,
+     -1.081,
+     -1.102,
+     -1.068,
+     -1.061,
+     -1.043,
+     -1.069,
+     -1.037,
+     -1.04,
+     -1.021,
+     -1.025
+    ],
+    "hi": [
+     0.862,
+     0.874,
+     0.888,
+     0.88,
+     0.885,
+     0.89,
+     0.888,
+     0.912,
+     0.92,
+     0.911,
+     0.917
+    ],
+    "p_cold_lag0": 0.833,
+    "p_cold_lag_1": 0.341,
+    "p_cold_window": 0.623,
+    "window_mean": 0.068
+   },
+   "winter|year_to_year": {
+    "comp": [
+     0.392,
+     -0.555,
+     -0.538,
+     -0.004,
+     -0.179,
+     0.491,
+     0.505,
+     -0.212,
+     -0.269,
+     -0.423,
+     0.111
+    ],
+    "lo": [
+     -1.026,
+     -1.041,
+     -1.036,
+     -1.02,
+     -1.031,
+     -1.027,
+     -1.024,
+     -0.997,
+     -1.012,
+     -0.982,
+     -0.996
+    ],
+    "hi": [
+     0.885,
+     0.892,
+     0.874,
+     0.904,
+     0.895,
+     0.896,
+     0.884,
+     0.887,
+     0.894,
+     0.899,
+     0.91
+    ],
+    "p_cold_lag0": 0.842,
+    "p_cold_lag_1": 0.348,
+    "p_cold_window": 0.656,
+    "window_mean": 0.102
+   },
+   "spring|anomaly": {
+    "comp": [
+     0.326,
+     0.343,
+     -0.104,
+     0.107,
+     0.3,
+     -0.032,
+     0.053,
+     0.112,
+     -0.173,
+     -0.11,
+     0.07
+    ],
+    "lo": [
+     -0.489,
+     -0.484,
+     -0.484,
+     -0.473,
+     -0.491,
+     -0.483,
+     -0.486,
+     -0.486,
+     -0.473,
+     -0.482,
+     -0.48
+    ],
+    "hi": [
+     0.409,
+     0.401,
+     0.399,
+     0.401,
+     0.404,
+     0.402,
+     0.403,
+     0.413,
+     0.41,
+     0.423,
+     0.417
+    ],
+    "p_cold_lag0": 0.444,
+    "p_cold_lag_1": 0.923,
+    "p_cold_window": 0.824,
+    "window_mean": 0.125
+   },
+   "spring|year_to_year": {
+    "comp": [
+     0.211,
+     0.226,
+     -0.224,
+     -0.016,
+     0.185,
+     -0.13,
+     -0.039,
+     0.017,
+     -0.257,
+     -0.19,
+     -0.005
+    ],
+    "lo": [
+     -0.44,
+     -0.444,
+     -0.446,
+     -0.432,
+     -0.429,
+     -0.436,
+     -0.432,
+     -0.428,
+     -0.422,
+     -0.432,
+     -0.437
+    ],
+    "hi": [
+     0.383,
+     0.392,
+     0.401,
+     0.394,
+     0.397,
+     0.392,
+     0.4,
+     0.401,
+     0.407,
+     0.417,
+     0.419
+    ],
+    "p_cold_lag0": 0.285,
+    "p_cold_lag_1": 0.817,
+    "p_cold_window": 0.561,
+    "window_mean": 0.013
+   },
+   "summer|anomaly": {
+    "comp": [
+     -0.0,
+     0.106,
+     -0.179,
+     -0.263,
+     -0.284,
+     0.005,
+     0.038,
+     0.231,
+     0.057,
+     -0.206,
+     -0.047
+    ],
+    "lo": [
+     -0.298,
+     -0.298,
+     -0.302,
+     -0.298,
+     -0.303,
+     -0.306,
+     -0.314,
+     -0.314,
+     -0.317,
+     -0.316,
+     -0.313
+    ],
+    "hi": [
+     0.308,
+     0.312,
+     0.312,
+     0.31,
+     0.313,
+     0.309,
+     0.306,
+     0.299,
+     0.307,
+     0.305,
+     0.308
+    ],
+    "p_cold_lag0": 0.502,
+    "p_cold_lag_1": 0.033,
+    "p_cold_window": 0.035,
+    "window_mean": -0.181
+   },
+   "summer|year_to_year": {
+    "comp": [
+     -0.005,
+     0.104,
+     -0.182,
+     -0.265,
+     -0.285,
+     0.001,
+     0.041,
+     0.228,
+     0.047,
+     -0.214,
+     -0.058
+    ],
+    "lo": [
+     -0.299,
+     -0.296,
+     -0.297,
+     -0.298,
+     -0.293,
+     -0.301,
+     -0.31,
+     -0.313,
+     -0.303,
+     -0.3,
+     -0.303
+    ],
+    "hi": [
+     0.299,
+     0.305,
+     0.3,
+     0.302,
+     0.306,
+     0.299,
+     0.296,
+     0.3,
+     0.301,
+     0.308,
+     0.303
+    ],
+    "p_cold_lag0": 0.504,
+    "p_cold_lag_1": 0.028,
+    "p_cold_window": 0.026,
+    "window_mean": -0.183
+   },
+   "autumn|anomaly": {
+    "comp": [
+     0.036,
+     0.017,
+     -0.173,
+     0.257,
+     0.099,
+     -0.107,
+     0.194,
+     0.118,
+     -0.1,
+     -0.39,
+     0.002
+    ],
+    "lo": [
+     -0.332,
+     -0.325,
+     -0.325,
+     -0.323,
+     -0.329,
+     -0.325,
+     -0.324,
+     -0.329,
+     -0.333,
+     -0.325,
+     -0.33
+    ],
+    "hi": [
+     0.311,
+     0.321,
+     0.322,
+     0.325,
+     0.318,
+     0.316,
+     0.324,
+     0.322,
+     0.323,
+     0.325,
+     0.326
+    ],
+    "p_cold_lag0": 0.26,
+    "p_cold_lag_1": 0.733,
+    "p_cold_window": 0.826,
+    "window_mean": 0.083
+   },
+   "autumn|year_to_year": {
+    "comp": [
+     0.031,
+     0.016,
+     -0.169,
+     0.254,
+     0.101,
+     -0.094,
+     0.206,
+     0.13,
+     -0.084,
+     -0.392,
+     -0.017
+    ],
+    "lo": [
+     -0.336,
+     -0.334,
+     -0.328,
+     -0.337,
+     -0.331,
+     -0.333,
+     -0.333,
+     -0.328,
+     -0.326,
+     -0.326,
+     -0.334
+    ],
+    "hi": [
+     0.313,
+     0.317,
+     0.322,
+     0.316,
+     0.323,
+     0.327,
+     0.32,
+     0.323,
+     0.33,
+     0.326,
+     0.323
+    ],
+    "p_cold_lag0": 0.287,
+    "p_cold_lag_1": 0.736,
+    "p_cold_window": 0.834,
+    "window_mean": 0.087
+   },
+   "annual|anomaly": {
+    "comp": [
+     0.124,
+     -0.096,
+     -0.32,
+     -0.024,
+     -0.051,
+     0.041,
+     0.129,
+     0.087,
+     -0.191,
+     -0.33,
+     -0.068
+    ],
+    "lo": [
+     -0.353,
+     -0.344,
+     -0.345,
+     -0.329,
+     -0.333,
+     -0.337,
+     -0.332,
+     -0.322,
+     -0.322,
+     -0.316,
+     -0.313
+    ],
+    "hi": [
+     0.267,
+     0.27,
+     0.27,
+     0.272,
+     0.273,
+     0.272,
+     0.271,
+     0.272,
+     0.278,
+     0.281,
+     0.287
+    ],
+    "p_cold_lag0": 0.597,
+    "p_cold_lag_1": 0.362,
+    "p_cold_window": 0.461,
+    "window_mean": -0.011
+   },
+   "annual|year_to_year": {
+    "comp": [
+     0.144,
+     -0.068,
+     -0.295,
+     0.001,
+     -0.032,
+     0.062,
+     0.152,
+     0.103,
+     -0.161,
+     -0.309,
+     -0.049
+    ],
+    "lo": [
+     -0.333,
+     -0.333,
+     -0.342,
+     -0.318,
+     -0.324,
+     -0.328,
+     -0.322,
+     -0.313,
+     -0.307,
+     -0.312,
+     -0.308
+    ],
+    "hi": [
+     0.275,
+     0.275,
+     0.277,
+     0.275,
+     0.276,
+     0.273,
+     0.268,
+     0.277,
+     0.28,
+     0.286,
+     0.278
+    ],
+    "p_cold_lag0": 0.655,
+    "p_cold_lag_1": 0.409,
+    "p_cold_window": 0.552,
+    "window_mean": 0.01
+   }
+  }
+ },
+ "sea_min_p": 0.026,
+ "sea_power": {
+  "needed_annual_lag0": -0.284,
+  "sd_annual": 0.358,
+  "sd_winter": 1.139
+ },
+ "cold_decile": {
+  "years": [
+   1565,
+   1569,
+   1573,
+   1587,
+   1595,
+   1600,
+   1601,
+   1608,
+   1614,
+   1621,
+   1627,
+   1635,
+   1658,
+   1691,
+   1695,
+   1697,
+   1716
+  ],
+  "panic_onsets_in_or_after": [
+   1628
+  ],
+  "people_in_cold_years": 215,
+  "expected_share": 0.0977,
+  "share_people": 0.0563,
+  "p_circular": 0.645
+ },
+ "climate_window": {
+  "mean_annual": 8.117,
+  "mean_annual_1901_2000": 8.4,
+  "coldest_year": 1573,
+  "coldest_value": 7.022,
+  "coldest_winter": 1709
+ },
+ "pendle": {
+  "year": 1612,
+  "accused": 12,
+  "executed": 10,
+  "lat": 53.869,
+  "lon": -2.3,
+  "coord_source": "Pendle Hill, location map in the Wikipedia article 'Pendle witches'",
+  "source": "Wikipedia, 'Pendle witches' (text as downloaded October 2026)",
+  "scotland_1612": 10,
+  "scotland_1610_1614": 55
+ },
+ "head": {
+  "outcomes_unknown": 2687,
+  "summer_prev_mean": -0.284,
+  "summer_prev_p": 0.033,
+  "summer_window_mean": -0.181,
+  "summer_window_p": 0.035,
+  "annual_onset_mean": 0.041,
+  "annual_onset_p": 0.597,
+  "annual_prev_mean": -0.051,
+  "annual_prev_p": 0.362,
+  "winter_onset_mean": 0.475,
+  "winter_onset_p": 0.833,
+  "band_annual_lag0": [
+   -0.337,
+   0.272
+  ],
+  "pendle_lat": 53.869,
+  "pendle_lon": -2.3,
+  "unnamed_share_people": 0.1635,
+  "places_mapped": 737,
+  "people_1643": 134,
+  "people_1644": 83,
+  "people_1658_1659": 170,
+  "people_after_1662": 505,
+  "people_after_1662_share": 0.1322
+ },
+ "meta": {
+  "window": [
+   1563,
+   1736
+  ],
+  "panics_defined": [
+   "1590 to 1591",
+   "1597",
+   "1628 to 1631",
+   "1649 to 1650",
+   "1661 to 1662"
+  ],
+  "doi": "10.5281/zenodo.23677167",
+  "slug": "witch-hunts"
+ }
+}
