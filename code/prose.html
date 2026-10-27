@@ -1,0 +1,127 @@
+<div class="stats">
+  <div><b class="h">{{total.people|int}}</b><span>people accused of witchcraft in Scotland, 1563 to 1736</span></div>
+  <div><b>{{sex.women_share|pct0}}</b><span>of named accused whose sex is known were women</span></div>
+  <div><b class="h">{{series.panic_share|pct0}}</b><span>of accusations fell in just {{series.panic_year_count|int}} panic years out of {{series.years|int}}</span></div>
+  <div><b class="c">{{corr_n_p05|int}} of {{corr_n_tests|int}}</b><span>temperature tests showed a link to accusations at p &lt; 0.05</span></div>
+</div>
+
+<p class="lede">In the winter of 1590, James VI sailed home from Denmark with his new queen through storms, and a group of men and women from East Lothian were soon accused of raising them. That trial, at North Berwick, opened the first of Scotland's great witch panics. Over the next century and a half the country accused {{total.people|int}} people of witchcraft, most of them in a few terrible bursts.</p>
+<p>Historians of continental Europe, notably Wolfgang Behringer and Emily Oster, have argued that witch hunts tracked the Little Ice Age: cold years ruined harvests, and frightened communities looked for someone to blame. It is a powerful idea, and Scotland is a good place to test it, because the Survey of Scottish Witchcraft records nearly every known accusation with a date and often a place. So I put the Survey's {{total.cases|int}} cases next to five centuries of reconstructed European temperature, and asked three questions. Where were the accused? Who were they? And did the panics follow cold, hard years?</p>
+<p>The short answer to the last question: not in any way I can detect. The panics were sudden and local, the people caught up in them were overwhelmingly women, and the cold years were not the witch years.</p>
+
+<h2><span class="n">01 · The panics</span>A century and a half, five great bursts</h2>
+<p>The Survey lists accusations from 1563, when the Scottish Parliament made witchcraft a capital crime, until 1736, when the law was repealed. In a typical year there were only a handful: the median year had {{series.median_year|int}} people accused, and {{series.zero_years|int}} years had none at all. Then, every so often, the number exploded. The worst year, {{series.peak_year|raw}}, saw {{series.peak_people|int}} people accused. The five panics marked below cover {{series.panic_year_count|int}} years, yet they hold {{series.panic_people|int}} of the {{series.people_1563_1736|int}} dated accusations, or {{series.panic_share|pct0}}.</p>
+<div class="figure bleed">
+  <div class="controls"><div class="seg" role="group" aria-label="Season">
+    <button class="btn" data-tls="annual" aria-pressed="true">Annual</button><button class="btn" data-tls="winter" aria-pressed="false">Winter</button><button class="btn" data-tls="spring" aria-pressed="false">Spring</button><button class="btn" data-tls="summer" aria-pressed="false">Summer</button><button class="btn" data-tls="autumn" aria-pressed="false">Autumn</button>
+  </div></div>
+  <div class="fig-h">People accused each year, and how cold the year was</div>
+  <div class="fig-sub">Top: people accused in Scotland (red = the five panics). Bottom: reconstructed European land temperature for the same year, blue colder and orange warmer than the 1563 to 1736 average. Hover or tap for a year.</div>
+  <div class="chart" id="tl"></div>
+  <div class="src">Accusations: Survey of Scottish Witchcraft (people per case year, including unnamed groups). Temperature: Luterbacher et al. 2004 and Xoplaki et al. 2005, European land (25°W to 40°E, 35°N to 70°N), via NOAA World Data Center for Paleoclimatology.</div>
+</div>
+<p>The five panics are the ones historians usually name: 1590 to 1591, 1597, 1628 to 1631, 1649 to 1650 and 1661 to 1662. The data also show smaller surges outside them: {{head.people_1643|int}} people in 1643 and {{head.people_1644|int}} in 1644, and {{head.people_1658_1659|int}} in 1658 to 1659. After the Restoration panic the hunt faded. Only {{head.people_after_1662_share|pct0}} of accusations came after 1662.</p>
+
+<h2 id="mapsec"><span class="n">02 · The map</span>Where the accused lived</h2>
+<p>Each circle is a place where named accused lived, sized by how many; the dark centre shows how many of them are recorded as executed. Drag the slider to move through the years, press play to watch the panics flare, or jump straight to one. The density layer shows where accusations were thickest. The gold diamond in Lancashire marks Pendle, for comparison (see section 05).</p>
+<div class="figure bleed">
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Period">
+      <button class="btn" data-pr="all" aria-pressed="true">All years</button>
+      <button class="btn" data-pr="1590 to 1591" aria-pressed="false">1590 to 1591</button>
+      <button class="btn" data-pr="1597" aria-pressed="false">1597</button>
+      <button class="btn" data-pr="1628 to 1631" aria-pressed="false">1628 to 1631</button>
+      <button class="btn" data-pr="1649 to 1650" aria-pressed="false">1649 to 1650</button>
+      <button class="btn" data-pr="1661 to 1662" aria-pressed="false">1661 to 1662</button>
+    </div>
+    <button class="btn" id="bdens" aria-pressed="false">Density</button>
+  </div>
+  <div class="slider">
+    <button class="btn" id="bplay">▶ Play</button>
+    <div class="seg" role="group" aria-label="Slider mode"><button class="btn" data-md="all" aria-pressed="true">Single year</button><button class="btn" data-md="upto" aria-pressed="false">Up to year</button></div>
+    <input type="range" id="yr" min="1563" max="1736" value="1563" aria-label="Year">
+    <span class="yr" id="yrl">All</span>
+  </div>
+  <div class="mapgrid">
+    <div>
+      <div id="map" role="application" aria-label="Map of the places where people accused of witchcraft in Scotland lived"></div>
+      <div class="legend"><span><i style="background:var(--tint);border:1.5px solid var(--hot)"></i>Accused who lived here (size = number)</span><span><i style="background:var(--fg)"></i>Of whom recorded as executed</span><span><i style="background:var(--hot);opacity:.35"></i>Density (8 km smoothing)</span><span><i style="background:var(--gold);border-radius:0;transform:rotate(45deg)"></i>Pendle, England</span></div>
+    </div>
+    <div class="side">
+      <div class="count" id="mcount"></div>
+      <div class="card empty" id="card">Tap a circle to see who was accused there in the years shown.</div>
+    </div>
+  </div>
+  <div class="src">Places: residence coordinates from Wikidata (CC0) for {{geo.geocoded|int}} of {{geo.named|int}} named accused ({{geo.share|pct0}}), at {{geo.places|int}} distinct places. Usually a parish or settlement centre, not a house. Unnamed accused ({{total.unnamed_people|int}} people in groups such as "3 unnamed witches") cannot be mapped. Names link to the Survey's case pages.</div>
+</div>
+<p>The pattern is unmistakable. Accusations piled up in the Lowlands around the Firth of Forth: {{geo.within50_share|pct0}} of mapped accused lived within 50 km of Edinburgh. Three counties, Haddington (East Lothian), Fife and Edinburgh (Midlothian), account for {{county_top3_share|pct0}} of all accused with a recorded county. The single place with most accused is Haddington, with {{top_places.0.n|int}}. The Highlands and Islands are almost empty in the record: only {{geo.north_of_tay_share|pct0}} of mapped accused lived north of the Tay.</p>
+<p class="pull">The panics were not national waves. Each one had its own heartland.</p>
+
+<h2><span class="n">03 · Panic by panic</span>Five hunts, five geographies</h2>
+<p>The 1597 hunt was centred on Aberdeenshire and Fife, and only {{panics.1.within50_share|pct0}} of its mapped accused lived within 50 km of Edinburgh. The 1649 to 1650 and 1661 to 1662 panics, by far the largest, were concentrated in the Lothians. The cards also show how warm or cold each panic's first year was. Only {{onsets_colder_than_mean.onset_year|words}} of the five onset years were colder than the average year; the 1661 to 1662 panic began in the {{panics.4.onset_cold_rank|ord}} coldest of {{series.years|int}} years, which is to say one of the warmest.</p>
+<div class="figure bleed">
+  <div class="panics" id="panics"></div>
+  <div class="src">Temperature: annual European land temperature anomaly from the 1563 to 1736 mean (Luterbacher et al. 2004; Xoplaki et al. 2005). Rank 1 = coldest year of the {{series.years|int}}. Executions count only cases where the Survey records an execution; many outcomes are unknown.</div>
+</div>
+
+<h2><span class="n">04 · The cold</span>Did the panics follow hard years?</h2>
+<p>If cold drove the hunts, the panic years, or the years just before them, should be colder than usual. I tested this several ways, each designed to respect two awkward facts: there are only five panics, and both temperature and accusations run in streaks, which makes chance coincidences look stronger than they are.</p>
+<h3>The years around each panic</h3>
+<p>The chart below stacks up the five panics and averages the temperature from five years before each onset to five years after. The grey band shows where 95% of averages fall when I pick five random years in the window instead, repeated {{sea.n_sim|int}} times. If the cold came first, the line should dip below the band just before the onset.</p>
+<div class="figure">
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Season"><button class="btn" data-ss="annual" aria-pressed="true">Annual</button><button class="btn" data-ss="winter" aria-pressed="false">Winter</button><button class="btn" data-ss="spring" aria-pressed="false">Spring</button><button class="btn" data-ss="summer" aria-pressed="false">Summer</button><button class="btn" data-ss="autumn" aria-pressed="false">Autumn</button></div>
+    <div class="seg" role="group" aria-label="Measure"><button class="btn" data-sk="anomaly" aria-pressed="true">Anomaly</button><button class="btn" data-sk="year_to_year" aria-pressed="false">Year-to-year</button></div>
+  </div>
+  <div class="fig-h">Temperature around the start of the five panics</div>
+  <div class="fig-sub">Average across the five onsets (dots), against the range for five random years (grey band, 95%).</div>
+  <div class="chart" id="sea"></div>
+  <div class="src" id="seanote"></div>
+</div>
+<p>For annual temperature, the onset years averaged {{head.annual_onset_mean|sg2}} °C against the window mean, well inside the range chance produces ({{head.band_annual_lag0.0|sg2}} to {{head.band_annual_lag0.1|sg2}} °C). Winters at onset were, if anything, mild ({{head.winter_onset_mean|sg2}} °C). There is one hint: the summer before a panic averaged {{head.summer_prev_mean|sg2}} °C, and {{onsets_colder_than_mean.summer_before|int}} of the 5 were below average. On its own that would pass a conventional test (p = {{head.summer_prev_p|f3}}). But I looked at five seasons, two measures and three windows, {{sea_n_tests|int}} comparisons in all, and five random onsets turn up a result at least this striking somewhere among them {{sea_familywise_p|pct0}} of the time. A cool summer before the panic is worth a closer look with local Scottish evidence, not a finding.</p>
+<h3>Every year, not just the panics</h3>
+<p>Across all {{series.years|int}} years, I correlated the number accused with temperature in the same year and one and two years before, for each season, both as raw anomalies and as year-to-year swings (the temperature with its slow 31-year trend removed). To judge each correlation fairly I slid the temperature series against the accusations by every offset of at least ten years, which keeps the streakiness of both series, and asked how often a shifted series correlates as strongly.</p>
+<div class="figure">
+  <div class="fig-h">Thirty correlations, none convincing</div>
+  <div class="fig-sub">Spearman correlation between people accused and temperature, with the share of shifted series that do at least as well (p). Blue cells: colder years, more accusations.</div>
+  <div class="tablewrap"><table class="t cg" id="cg"></table></div>
+</div>
+<p>None of the {{corr_n_tests|int}} correlations reaches p &lt; 0.05; the smallest p is {{corr_min_p|f2}}. The strongest headline candidate, annual temperature in the same year, gives a correlation of {{corr_head.annual_lag0.spearman|sg2}} (p = {{corr_head.annual_lag0.p_circular|f2}}). The panic years were in fact slightly warmer than the rest: {{panic_vs_other_temp.annual.panic|sg2}} °C against {{panic_vs_other_temp.annual.other|sg2}} °C on average, relative to the window mean.</p>
+<p>The 17 coldest years of the window (the coldest tenth) saw {{cold_decile.people_in_cold_years|int}} accusations, {{cold_decile.share_people|pct1}} of the total, less than the {{cold_decile.expected_share|pct1}} they would get if accusations were spread evenly. Only one panic, 1628 to 1631, began in or just after one of those cold years.</p>
+<h3>Decade by decade</h3>
+<p>The Little Ice Age argument is often made at the scale of decades rather than single years, so I also compared the ten-year totals with the ten-year mean temperature. The colder decades did see somewhat more accusations (correlation {{decadal.phase_r_annual|sg2}}), but with only {{decadal.n|int}} decades the chance of a link this strong from random temperature series with the same rhythms is {{decadal.phase_p_annual|f2}}. Leave out the eighteenth century, when accusations had already died away, and the sign flips ({{decadal.pre1700_r_annual|sg2}}).</p>
+<div class="figure">
+  <div class="fig-h">Cold decades were not reliably witch decades</div>
+  <div class="fig-sub">People accused per decade (log scale) against the decade's mean European annual temperature, 1570s to 1720s.</div>
+  <div class="chart" id="dec"></div>
+</div>
+<div class="note"><h3>How big an effect could I have seen?</h3><p>Not a small one. With five panics, the onset years would have needed to average about {{sea_power.needed_annual_lag0|sg2}} °C (annual) to stand out at the 5% level, against a typical year-to-year spread of {{sea_power.sd_annual|f2}} °C. So this is not proof that weather never mattered. It is evidence that Scotland's great panics were not set off, in any consistent way, by the kind of Europe-wide cold the reconstruction records.</p></div>
+
+<h2><span class="n">05 · The accused</span>Who they were, and what happened to them</h2>
+<p>Of the {{total.named|int}} named accused, {{sex.female|int}} were women and {{sex.male|int}} were men ({{sex.unknown|int}} unknown): {{sex.women_share|pct0}} women. That share barely moved between panic years ({{panic_all.women_share|pct0}}) and quieter years ({{nonpanic.women_share|pct0}}). Where marital status is recorded, {{marital.Married|int}} were married and {{marital.Widowed|int}} widowed. Where an age is known or estimated ({{age.n|int}} people), the median is {{age.median|int}}. Most whose social standing is recorded were of middling or lower status.</p>
+<p>The records of what happened to the accused are badly incomplete. For {{head.outcomes_unknown|int}} of the {{total.named|int}} named accused no outcome survives. Of the {{outcomes_known|int}} with a known outcome, {{executed|int}} ({{executed_share_known|pct0}}) were executed, most often strangled and then burned ({{execution_methods.Strangle & Burn|int}} cases where the method is recorded). The share executed among known outcomes was higher during panics ({{exec_panic_vs_other.panic|pct0}}) than between them ({{exec_panic_vs_other.other|pct0}}). The Survey records torture for {{tortured|int}} people, most often sleep deprivation, and pricking (searching for the "witch's mark" with a needle) for {{pricked|int}}. These are floors, not totals.</p>
+<div class="figure">
+  <div class="fig-h">What the record says happened</div>
+  <div class="fig-sub">Named accused by the most serious outcome recorded in the Survey.</div>
+  <div class="chart" id="out"></div>
+</div>
+<h3>Pendle, by contrast</h3>
+<p>Lancashire's Pendle witches, tried in 1612, are England's most famous witch trial: {{pendle.accused|int}} people accused, {{pendle.executed|int}} hanged. In Scotland that same year the Survey records {{pendle.scotland_1612|int}} people accused, a quiet year. English law and courts produced isolated, notorious trials. Scotland, where local church courts gathered accusations and the Privy Council issued commissions to try them, produced panics that could sweep up hundreds in a season.</p>
+
+<h2><span class="n">06 · Methods</span>How I did this, and what to be careful of</h2>
+<p><b>Accusations.</b> I read 38 tables from the Survey of Scottish Witchcraft's database export. The text files have no header row, so the column names are inferred: I matched each column I use to the Survey's fields by checking its contents. Each case is one row. Named cases count as one person; a few cases describe unnamed groups ("3 unnamed witches"), which I count by the number given ({{total.unnamed_people|int}} people in {{total.unnamed_cases|int}} cases, {{total.unnamed_default3_cases|int}} of them recorded as three). I date each case by its case date, falling back to its start date; using start dates instead changes almost nothing (correlation {{series.corr_case_vs_start_year|f3}} between the two annual series). {{total.undated_cases|int}} cases have no date. Outcome is the most serious result in any linked trial record: execution if any trial records one.</p>
+<p><b>Places.</b> The Survey gives settlements, parishes and counties but no coordinates for most accused. Wikidata holds an item for nearly every named accused, with the Survey's reference and a place of residence that has coordinates, which I joined on the reference. These are place centres, and I have not checked every Wikidata residence against the Survey, so any errors there carry through.</p>
+<p><b>Temperature.</b> The temperature series is a reconstruction for European land as a whole (25°W to 40°E, 35°N to 70°N), built from early instrumental records, documentary sources and natural proxies. It is not Scottish weather. Scotland sits at its north-western edge, and a cold year in central Europe could be ordinary in Fife. Winter is December to February, labelled by the year of January. A Scottish series this long and detailed does not exist, as far as I know, which is a real limit on this test.</p>
+<p><b>Tests.</b> All p-values account for autocorrelation: circular shifts of at least ten years for the annual correlations ({{corr_n_shifts|int}} shifts), random sets of five onset years from {{sea.eligible_years.0|raw}} to {{sea.eligible_years.1|raw}} for the event study ({{sea.n_sim|int}} draws), and random-phase surrogate series with the same spectrum for the decadal test. I report the family-wise check for the event study because I tried {{sea_n_tests|int}} combinations. The five panics were defined by historians who already knew the counts; they are not tuned to temperature.</p>
+<p><b>Respect.</b> These are real people, most of them women, many of them killed. I have shown their names as the Survey records them, with links to their case pages, because a name is more than a dot.</p>
+
+<h2><span class="n">07 · Sources</span>Data and licences</h2>
+<ul>
+<li>Goodare, J., Martin, L., Miller, J. and Yeoman, L. 2003. <i>The Survey of Scottish Witchcraft, 1563 to 1736</i>. University of Edinburgh. <a href="https://doi.org/10.7488/ds/100">doi.org/10.7488/ds/100</a> (CC BY 4.0). Online: <a href="https://witches.hca.ed.ac.uk/">witches.hca.ed.ac.uk</a>.</li>
+<li>Wikidata items for accused witches in Scotland, with Survey identifiers and places of residence (CC0), downloaded October 2026.</li>
+<li>Luterbacher, J. et al. 2006. European Seasonal Temperature Reconstructions. IGBP PAGES/World Data Center for Paleoclimatology Data Contribution Series 2006-060. NOAA/NCDC Paleoclimatology Program, Boulder CO. Original references: Luterbacher, J., Dietrich, D., Xoplaki, E., Grosjean, M. and Wanner, H. 2004. European seasonal and annual temperature variability, trends and extremes since 1500. <i>Science</i> 303, 1499 to 1503. Xoplaki, E. et al. 2005. European spring and autumn temperature variability and change of extremes over the last half millennium. <i>Geophysical Research Letters</i> 32, L15713.</li>
+<li>Wikipedia, "Pendle witches" (CC BY-SA 4.0), for the Pendle numbers and the location of Pendle Hill.</li>
+<li>Background: Behringer, W. 1999. Climatic change and witch-hunting: the impact of the Little Ice Age on mentalities. <i>Climatic Change</i> 43, 335 to 351. Oster, E. 2004. Witchcraft, weather and economic growth in Renaissance Europe. <i>Journal of Economic Perspectives</i> 18(1), 215 to 228.</li>
+</ul>
+<div class="cta"><a class="p" href="https://doi.org/10.5281/zenodo.23677167">Read the paper</a><a href="https://github.com/Tristan-Hotham/witch-hunts">Data and code</a><a href="https://blog.tristanhotham.com/">More data studies</a></div>
+<p style="font-size:16px;color:var(--muted)">Other history data studies: <a href="https://tristan-hotham.github.io/domesday-destiny/">Is Domesday destiny?</a> · <a href="https://tristan-hotham.github.io/within-sight/">Within Sight</a> · <a href="https://tristan-hotham.github.io/triskell-boom/">The Triskell Boom</a></p>

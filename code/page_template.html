@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cold Years, Witch Years?</title>
+<meta name="description" content="Scotland accused {{total.people|int}} people of witchcraft between 1563 and 1736, mostly in sudden panics. Where were they, who were they, and did the panics follow cold years?">
+<meta property="og:title" content="Cold Years, Witch Years? Scotland's witch panics and the Little Ice Age">
+<meta property="og:description" content="{{total.people|int}} accused, five great panics and five centuries of reconstructed European temperature. Did the cold come first?">
+<meta property="og:image" content="https://tristan-hotham.github.io/witch-hunts/header.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Bone and ash by day, blue-grey winter by night. Ember = the accused. Frost blue = cold. Rust = warm. */
+:root{
+  --bg:#EEEAE2; --panel:#E4DED3; --fg:#1C2228; --muted:#62686E; --rule:#D3CCBF; --card:#F8F5EF; --border:#C2BAAB;
+  --hot:#A8382A; --cold:#2F6690; --warm:#B8662E; --ash:#8C8780; --gold:#8E6F22; --tint:rgba(168,56,42,.10);
+  --sea:#DDE3E6; --land:#E9E4D9;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151B21; --panel:#1D252D; --fg:#E5E8EA; --muted:#9AA4AD; --rule:#2D3741; --card:#1A2229; --border:#3A4652;
+  --hot:#E0664F; --cold:#86B6DE; --warm:#E39A5B; --ash:#7A848C; --gold:#D3AE57; --tint:rgba(224,102,79,.13);
+  --sea:#10161B; --land:#202931; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151B21; --panel:#1D252D; --fg:#E5E8EA; --muted:#9AA4AD; --rule:#2D3741; --card:#1A2229; --border:#3A4652;
+  --hot:#E0664F; --cold:#86B6DE; --warm:#E39A5B; --ash:#7A848C; --gold:#D3AE57; --tint:rgba(224,102,79,.13);
+  --sea:#10161B; --land:#202931; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.62 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:680px;margin:0 auto;padding-block:28px 64px}
+.wrap .bleed{width:min(1080px,calc(100vw - 32px));margin-left:calc((100% - min(1080px,100vw - 32px))/2);margin-right:0}
+a{color:inherit;text-decoration-color:var(--hot);text-underline-offset:3px}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kicker b{background:var(--hot);color:#fff;padding:5px 8px;font-weight:500}
+.kicker a{text-decoration:none}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end;border-bottom:6px double var(--fg);padding-bottom:22px;margin-top:18px}
+h1{font:900 clamp(50px,12.5vw,104px)/.88 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance;font-variation-settings:"SOFT" 50}
+h1 em{font-style:normal;color:var(--hot)}
+h1 i{font-style:normal;color:var(--cold)}
+.mark{width:clamp(92px,21vw,170px);height:auto;display:block}
+.dek{grid-column:1/-1;font-size:21px;line-height:1.42;margin:8px 0 0;max-width:44ch}
+.byline{font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:14px}
+h2{font:800 34px/1.04 var(--display);letter-spacing:-.01em;margin:52px 0 10px;text-wrap:balance}
+h2 .n{font:500 13px/1 var(--mono);color:var(--hot);display:block;letter-spacing:.1em;margin-bottom:10px}
+h3{font:600 20px/1.25 var(--display);margin:28px 0 6px}
+p{margin:0 0 16px}
+.lede::first-letter{font:900 72px/.8 var(--display);float:left;margin:6px 10px 0 0;color:var(--hot)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.stats div{background:var(--card);padding:14px 12px}
+.stats b{display:block;font:900 clamp(28px,6vw,40px)/1 var(--display);color:var(--fg)}
+.stats b.h{color:var(--hot)} .stats b.c{color:var(--cold)}
+.stats span{font:400 12px/1.35 var(--mono);color:var(--muted);display:block;margin-top:6px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figure{margin:26px 0 30px}
+.fig-h{font:600 19px/1.25 var(--display);margin:0 0 4px}
+.fig-sub{font:400 13px/1.45 var(--mono);color:var(--muted);margin:0 0 12px}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:10px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--mono);fill:var(--fg)}
+.lab{font-size:12px}.lab.m{fill:var(--muted)}.lab.b{font-weight:500}.lab.s{font-size:11px}.lab.h{fill:var(--hot)}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font:400 12px/1.45 var(--mono);padding:8px 10px;border-radius:3px;max-width:270px;z-index:1000;transform:translate(-50%,calc(-100% - 12px));display:none}
+.tip b{font-weight:500}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+.btn{font:500 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;min-height:36px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn:focus-visible,input:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:3px;overflow:hidden;flex-wrap:wrap}
+.seg .btn{border:0;border-radius:0;border-right:1px solid var(--border)}
+.seg .btn:last-child{border-right:0}
+.slider{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 10px;font:400 13px/1.3 var(--mono)}
+.slider input[type=range]{flex:1 1 220px;min-width:0;accent-color:var(--hot)}
+.yr{font:800 30px/1 var(--display);min-width:3.2ch;color:var(--hot)}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:820px){.mapgrid{grid-template-columns:1fr}}
+#map{height:clamp(440px,76vh,700px);border:1px solid var(--border);background:var(--sea);border-radius:2px;z-index:0}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font:400 12px/1.3 var(--mono);color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.side{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--hot);padding:12px 14px;font:400 13px/1.5 var(--mono)}
+.card.empty{border-left-color:var(--border);color:var(--muted)}
+.card b{font:600 18px/1.2 var(--display);display:block;margin-bottom:6px}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:6px 0 8px}
+.card dt{color:var(--muted)}.card dd{margin:0}
+.card ul{margin:6px 0 0;padding-left:18px;max-height:260px;overflow:auto}
+.count{font:400 13px/1.5 var(--mono);color:var(--muted)}
+.count b{font:800 26px/1 var(--display);color:var(--fg);display:block}
+.panics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.panics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:540px){.panics{grid-template-columns:1fr}}
+.pc{background:var(--card);border:1px solid var(--border);border-top:5px solid var(--hot);padding:14px 14px 12px;display:flex;flex-direction:column;gap:6px}
+.pc .lb{font:500 12px/1 var(--mono);letter-spacing:.1em;color:var(--hot);text-transform:uppercase}
+.pc h3{margin:0;font-size:20px}
+.pc .big{font:900 40px/1 var(--display)}
+.pc .big small{font:400 13px/1.3 var(--mono);color:var(--muted);margin-left:6px}
+.pc svg{width:100%;height:auto;display:block;background:var(--sea);border:1px solid var(--rule)}
+.pc dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:4px 0 4px;font:400 12.5px/1.4 var(--mono)}
+.pc dt{color:var(--muted)}.pc dd{margin:0;text-align:right}
+.pc .btn{align-self:flex-start;margin-top:4px}
+.pull{font:600 26px/1.25 var(--display);border-left:6px solid var(--cold);padding:4px 0 4px 18px;margin:30px 0}
+.note{background:var(--panel);border:1px solid var(--rule);padding:14px 16px;font-size:16px;margin:22px 0}
+.note h3{margin-top:0}
+table.t{width:100%;border-collapse:collapse;font:400 13px/1.35 var(--mono)}
+table.t th{text-align:left;font-weight:500;color:var(--muted);border-bottom:2px solid var(--fg);padding:6px 8px 6px 0}
+table.t td{border-bottom:1px solid var(--rule);padding:7px 8px 7px 0;vertical-align:top}
+table.t td.num,table.t th.num{text-align:right}
+table.cg td.c{text-align:center;padding:6px 4px;border:1px solid var(--bg)}
+table.cg td.c small{display:block;color:var(--muted);font-size:11px}
+.tablewrap{overflow-x:auto}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cta a{font:500 13px/1 var(--mono);text-decoration:none;border:1px solid var(--fg);padding:11px 14px;border-radius:3px}
+.cta a.p{background:var(--hot);border-color:var(--hot);color:#fff}
+footer{border-top:6px double var(--fg);margin-top:56px;padding-top:16px;font:400 13px/1.55 var(--mono);color:var(--muted)}
+footer p{margin:0 0 10px}
+.theme{position:fixed;right:12px;bottom:12px;z-index:1001}
+.leaflet-container{font:400 12px/1.4 var(--mono);background:var(--sea)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg);border-radius:3px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.leaflet-popup-content{margin:10px 12px;font:400 12.5px/1.45 var(--mono)}
+.leaflet-popup-content b{font:600 15px/1.2 var(--display);display:block;margin-bottom:4px}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--card) 85%,transparent)!important;color:var(--muted)!important;font-size:10px}
+.leaflet-control-attribution a{color:var(--fg)!important}
+.leaflet-popup-content a{color:var(--hot)}
+.leaflet-bar a{background:var(--card);color:var(--fg);border-bottom-color:var(--border)}
+.leaflet-bar a:hover{background:var(--panel)}
+.leaflet-bar{border:1px solid var(--border)!important}
+@media print{.theme,.controls{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker"><b>Data study</b><span>History × climate</span><span>·</span><span>Scotland 1563 to 1736</span><span>·</span><a href="https://blog.tristanhotham.com/">Blog home</a></div>
+<header class="hero">
+  <h1><i>Cold</i> years, <em>witch</em> years?</h1>
+  <svg class="mark" viewBox="-100 -100 200 200" aria-hidden="true"><g id="heroMark"></g></svg>
+  <p class="dek">Scotland accused {{total.people|int}} people of witchcraft between 1563 and 1736, most of them in a handful of sudden panics. I mapped where they lived, counted who they were, and tested whether the panics followed cold, hard years.</p>
+</header>
+<div class="byline">Dr Tristan Hotham, Independent researcher · October 2026 · Data: Survey of Scottish Witchcraft, Wikidata, European seasonal temperature reconstructions (Luterbacher, Xoplaki and colleagues)</div>
+
+<!--PROSE-->
+
+<footer>
+  <p>Dr Tristan Hotham, researcher on social media, campaigns and politics. Independent researcher. <a href="https://blog.tristanhotham.com/">Blog</a> · Paper: <a href="https://doi.org/10.5281/zenodo.23677167">doi.org/10.5281/zenodo.23677167</a> · <a href="https://github.com/Tristan-Hotham/witch-hunts">Data and code</a> · <a href="https://blog.tristanhotham.com/2026/10/27/witch-hunts/">Blog post</a></p>
+  <p>Accusations: Goodare, J., Martin, L., Miller, J. and Yeoman, L. 2003, <a href="https://doi.org/10.7488/ds/100">The Survey of Scottish Witchcraft, 1563 to 1736</a>, University of Edinburgh, CC BY 4.0. Residence coordinates: <a href="https://www.wikidata.org/">Wikidata</a> (CC0). Temperature: Luterbacher, J. et al. 2006, European Seasonal Temperature Reconstructions, IGBP PAGES/World Data Center for Paleoclimatology Data Contribution Series 2006-060, NOAA/NCDC Paleoclimatology Program (Luterbacher et al. 2004; Xoplaki et al. 2005). Pendle: Wikipedia, "Pendle witches" (CC BY-SA 4.0). Coastline for the small maps: Natural Earth (public domain). Base map tiles © Esri, HERE, Garmin, © OpenStreetMap contributors, and the GIS user community. Map library: Leaflet.</p>
+  <p>The derived data and text on this page are released under CC BY 4.0. Code is MIT.</p>
+  <p>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</p>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<button class="btn theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/*DATA*/
+const NS = "http://www.w3.org/2000/svg";
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const el = (t, a = {}, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const fmt = n => Math.round(n).toLocaleString("en-GB");
+const pc = (x, d = 0) => (x * 100).toFixed(d) + "%";
+const sg = (x, d = 2) => (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d);
+const tip = document.getElementById("tip");
+function showTip(h, x, y) { tip.innerHTML = h; tip.style.display = "block"; const w = tip.offsetWidth; x = Math.max(w / 2 + 8, Math.min(innerWidth - w / 2 - 8, x)); tip.style.left = x + scrollX + "px"; tip.style.top = y + scrollY + "px"; }
+function hideTip() { tip.style.display = "none"; }
+function hover(node, h) { node.style.cursor = "pointer"; node.setAttribute("tabindex", "0"); const s = () => { const r = node.getBoundingClientRect(); showTip(typeof h === "function" ? h() : h, r.left + r.width / 2, r.top); }; node.addEventListener("pointerenter", s); node.addEventListener("focus", s); node.addEventListener("pointerleave", hideTip); node.addEventListener("blur", hideTip); node.addEventListener("click", e => { e.stopPropagation(); s(); }); }
+document.addEventListener("click", hideTip);
+const redraws = [];
+function resp(box, render) { let last = 0; const go = (force) => { const w = Math.max(280, Math.round(box.clientWidth)); if (!force && Math.abs(w - last) < 4) return; last = w; box.innerHTML = ""; render(w, w < 560); }; new ResizeObserver(() => go()).observe(box); redraws.push(() => go(true)); go(); return () => go(true); }
+const lbl = (svg, x, y, s, cls = "lab", anchor = "start") => { const t = el("text", { x, y, class: cls, "text-anchor": anchor }, svg); t.textContent = s; return t; };
+const R = D.R;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const SEAS = { annual: "Annual", winter: "Winter (DJF)", spring: "Spring", summer: "Summer (JJA)", autumn: "Autumn" };
+
+document.getElementById("theme").onclick = () => { const r = document.documentElement; const dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; r.dataset.theme = dark ? "light" : "dark"; redraws.forEach(f => f()); window.__restyle && window.__restyle(); };
+const isDark = () => { const r = document.documentElement; return r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+
+/* hero mark: a six-armed frost crystal around an ember */
+(() => { const g = document.getElementById("heroMark");
+  for (let i = 0; i < 6; i++) { const a = i * 60, s = el("g", { transform: `rotate(${a})` }, g);
+    el("line", { x1: 0, y1: -22, x2: 0, y2: -92, stroke: "var(--cold)", "stroke-width": 5, "stroke-linecap": "round" }, s);
+    [[-48, 16], [-70, 13]].forEach(([y, l]) => { el("line", { x1: 0, y1: y, x2: -l, y2: y - l, stroke: "var(--cold)", "stroke-width": 4, "stroke-linecap": "round" }, s); el("line", { x1: 0, y1: y, x2: l, y2: y - l, stroke: "var(--cold)", "stroke-width": 4, "stroke-linecap": "round" }, s); }); }
+  el("circle", { r: 15, fill: "var(--hot)" }, g);
+  el("path", { d: "M0 -11 C7 -3 6 5 0 9 C-6 5 -7 -3 0 -11Z", fill: "var(--bg)", opacity: .55 }, g);
+})();
+
+/* ===== data ===== */
+const Y0 = D.years[0], NY = D.years.length;
+const P = D.pts.map(r => ({ lat: r[0], lon: r[1], y: r[2], sex: r[3], oc: r[4], name: r[5], place: r[6], ref: r[7], tort: r[8] }));
+const PANICS = R.panics;
+const inPanic = y => PANICS.find(p => y >= p.start && y <= p.end);
+
+/* ===== timeline ===== */
+(() => { let season = "annual"; const box = document.getElementById("tl");
+  document.querySelectorAll("[data-tls]").forEach(b => b.onclick = () => { season = b.dataset.tls; document.querySelectorAll("[data-tls]").forEach(x => x.setAttribute("aria-pressed", x.dataset.tls === season)); redraw(); });
+  const redraw = resp(box, (W, nar) => {
+    const m = { l: nar ? 40 : 48, r: 10, t: 40, b: 34 }, H1 = nar ? 190 : 230, gap = 30, H2 = nar ? 110 : 130, H = m.t + H1 + gap + H2 + m.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "People accused of witchcraft each year in Scotland, 1563 to 1736, with European temperature anomalies below" }, box);
+    const X = y => m.l + (y - Y0) / NY * (W - m.l - m.r), bw = (W - m.l - m.r) / NY;
+    const max = 600, Y = v => m.t + H1 - v / max * H1;
+    const t = D.t[season], tmax = Math.max(1, Math.ceil(Math.max(...t.map(Math.abs)) * 2) / 2), T0 = m.t + H1 + gap + H2 / 2, TY = v => T0 - v / tmax * (H2 / 2);
+    PANICS.forEach(p => { el("rect", { x: X(p.start) - 1, y: m.t - 14, width: X(p.end + 1) - X(p.start) + 2, height: H1 + gap + H2 + 14, fill: "var(--tint)" }, svg); });
+    PANICS.forEach((p, i) => lbl(svg, X((p.start + p.end + 1) / 2), m.t - 2 - (i % 2 ? 0 : 13), String(p.start), "lab s h", "middle"));
+    [0, 200, 400, 600].forEach(v => { el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: "var(--rule)" }, svg); lbl(svg, m.l - 6, Y(v) + 4, fmt(v), "lab m s", "end"); });
+    D.people.forEach((v, i) => { if (!v) return; const y = Y0 + i; el("rect", { x: X(y) + bw * .08, y: Y(v), width: Math.max(1, bw * .84), height: Y(0) - Y(v), fill: inPanic(y) ? "var(--hot)" : "var(--ash)" }, svg); });
+    lbl(svg, m.l, m.t + 12, "People accused", "lab m s");
+    [-tmax, 0, tmax].forEach(v => { el("line", { x1: m.l, x2: W - m.r, y1: TY(v), y2: TY(v), stroke: v === 0 ? "var(--fg)" : "var(--rule)", "stroke-width": v === 0 ? .8 : 1 }, svg); lbl(svg, m.l - 6, TY(v) + 4, (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v), "lab m s", "end"); });
+    t.forEach((v, i) => { el("rect", { x: X(Y0 + i) + bw * .1, y: Math.min(TY(v), T0), width: Math.max(1, bw * .8), height: Math.abs(TY(v) - T0), fill: v < 0 ? "var(--cold)" : "var(--warm)", opacity: .8 }, svg); });
+    const sm = t.map((_, i) => { const a = t.slice(Math.max(0, i - 5), i + 6); return a.reduce((s, x) => s + x, 0) / a.length; });
+    el("path", { d: "M" + sm.map((v, i) => `${X(Y0 + i) + bw / 2} ${TY(v)}`).join("L"), fill: "none", stroke: "var(--fg)", "stroke-width": 1.6 }, svg);
+    lbl(svg, m.l, m.t + H1 + gap - 6, `${SEAS[season]} temperature, °C from the 1563 to 1736 mean. Line: 11-year average`, "lab m s");
+    for (let y = 1575; y <= 1725; y += 25) lbl(svg, X(y) + bw / 2, H - 12, y, "lab m s", "middle");
+    const ov = el("rect", { x: m.l, y: 0, width: W - m.l - m.r, height: H, fill: "transparent" }, svg); const cur = el("line", { y1: m.t - 14, y2: H - m.b + 4, stroke: "var(--fg)", "stroke-width": 1, opacity: 0 }, svg);
+    const at = ev => { const r = svg.getBoundingClientRect(); const x = (ev.clientX - r.left) / r.width * W; const i = Math.max(0, Math.min(NY - 1, Math.floor((x - m.l) / bw))); const y = Y0 + i, p = inPanic(y);
+      cur.setAttribute("x1", X(y) + bw / 2); cur.setAttribute("x2", X(y) + bw / 2); cur.setAttribute("opacity", .5);
+      showTip(`<b>${y}${p ? " · panic " + p.label : ""}</b><br>${fmt(D.people[i])} people accused<br>Women ${D.women[i]} · men ${D.men[i]} (named)<br>Executed (recorded): ${D.exe[i]}<br>${SEAS[season]}: ${sg(t[i])} °C`, ev.clientX, r.top + Y(Math.max(D.people[i], 40)) / H * r.height - 4); };
+    ov.addEventListener("pointermove", at); ov.addEventListener("pointerdown", at); ov.addEventListener("pointerleave", () => { hideTip(); cur.setAttribute("opacity", 0); });
+  });
+})();
+
+/* ===== map ===== */
+const MAP = {};
+(() => {
+  const card = document.getElementById("card");
+  if (!window.L) { document.getElementById("map").innerHTML = '<p style="padding:16px;font:400 13px/1.5 var(--mono)">The map library did not load. The charts below still work.</p>'; return; }
+  const map = L.map("map", { preferCanvas: true, scrollWheelZoom: false, zoomSnap: .25, minZoom: 5, maxZoom: 13 }).fitBounds([[54.6, -7.4], [59.4, -0.8]]);
+  map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
+  map.on("focus", () => map.scrollWheelZoom.enable()); map.on("blur", () => map.scrollWheelZoom.disable());
+  const tileUrl = () => `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/${isDark() ? "World_Dark_Gray_Base" : "World_Light_Gray_Base"}/MapServer/tile/{z}/{y}/{x}`;
+  const tiles = L.tileLayer(tileUrl(), { maxZoom: 16, attribution: "Tiles &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS user community · Accused: Survey of Scottish Witchcraft (CC BY 4.0) · Places: Wikidata (CC0)" }).addTo(map);
+  map.createPane("dens"); map.getPane("dens").style.zIndex = 350;
+  const C = {}; const col = v => C[v] || (C[v] = css(v));
+  const dotR = L.canvas({ padding: .3, tolerance: 5 });
+  const layer = L.layerGroup().addTo(map), dens = L.layerGroup().addTo(map);
+  let a = 1563, b = 1736, mode = "all", showDens = false, preset = "all", sel = null, timer = null;
+  const slider = document.getElementById("yr"), yl = document.getElementById("yrl"), cnt = document.getElementById("mcount");
+  function filt() { return P.filter(p => p.y >= a && p.y <= b); }
+  function groups(list) { const g = new Map(); list.forEach(p => { const k = p.lat + "," + p.lon; if (!g.has(k)) g.set(k, { lat: p.lat, lon: p.lon, place: p.place, list: [] }); g.get(k).list.push(p); }); return [...g.values()].sort((x, y) => y.list.length - x.list.length); }
+  function draw() {
+    layer.clearLayers(); const list = filt(), G = groups(list);
+    G.forEach(gp => { const n = gp.list.length, ex = gp.list.filter(p => p.oc === 0).length;
+      const m = L.circleMarker([gp.lat, gp.lon], { renderer: dotR, radius: 2.2 + Math.sqrt(n) * 1.9, color: col("--hot"), weight: 1, opacity: .9, fillColor: col("--hot"), fillOpacity: .28 }).addTo(layer);
+      if (ex) L.circleMarker([gp.lat, gp.lon], { renderer: dotR, radius: 1.4 + Math.sqrt(ex) * 1.9, weight: 0, fillColor: col("--fg"), fillOpacity: .85, interactive: false }).addTo(layer);
+      m.on("click", () => select(gp)); });
+    const ppl = D.people.slice(a - Y0, b - Y0 + 1).reduce((s, x) => s + x, 0);
+    cnt.innerHTML = `<b>${fmt(ppl)}</b>people accused ${a === b ? "in " + a : a + " to " + b}; ${fmt(list.length)} named and mapped at ${fmt(G.length)} places`;
+    drawDens(); if (sel) { const k = sel.lat + "," + sel.lon; const g2 = G.find(g => g.lat + "," + g.lon === k); select(g2 || null); }
+  }
+  function drawDens() { dens.clearLayers(); if (!showDens) return; const set = PANICS.find(p => p.label === preset) ? preset : "all";
+    const lv = { 0.05: .07, 0.15: .09, 0.4: .12, 1: .15, 2.5: .2 };
+    D.kde.features.filter(f => f.properties.set === set).forEach(f => L.geoJSON(f, { pane: "dens", interactive: false, style: { stroke: false, fillColor: col("--hot"), fillOpacity: lv[f.properties.level] || .2 } }).addTo(dens)); }
+  const OC = D.oc;
+  function select(gp) { sel = gp; if (!gp) { card.className = "card empty"; card.textContent = "Tap a circle to see who was accused there in the years shown."; return; }
+    const L2 = [...gp.list].sort((x, y) => x.y - y.y); card.className = "card";
+    card.innerHTML = `<b>${esc(gp.place)}</b><dl><dt>Accused</dt><dd>${L2.length} named</dd><dt>Women</dt><dd>${L2.filter(p => p.sex === 0).length}</dd><dt>Executed</dt><dd>${L2.filter(p => p.oc === 0).length} recorded</dd><dt>Years</dt><dd>${L2[0].y === L2[L2.length - 1].y ? L2[0].y : L2[0].y + " to " + L2[L2.length - 1].y}</dd></dl><ul>` +
+      L2.slice(0, 120).map(p => `<li><a href="https://witches.hca.ed.ac.uk/case/C/${esc(p.ref)}" target="_blank" rel="noopener">${esc(p.name)}</a> <span style="color:var(--muted)">${p.y} · ${OC[p.oc] === "Not recorded" || OC[p.oc] === "No trial record" ? "outcome not recorded" : esc(OC[p.oc]).toLowerCase()}</span></li>`).join("") + (L2.length > 120 ? `<li>and ${L2.length - 120} more</li>` : "") + "</ul>"; }
+  function setRange(x, y, pr) { a = x; b = y; preset = pr; document.querySelectorAll("[data-pr]").forEach(e => e.setAttribute("aria-pressed", e.dataset.pr === pr)); yl.textContent = pr === "all" ? "All" : pr === "slider" ? (mode === "upto" ? "1563 to " + y : y) : pr; draw(); }
+  document.querySelectorAll("[data-pr]").forEach(e => e.onclick = () => { stop(); const pr = e.dataset.pr; if (pr === "all") setRange(1563, 1736, "all"); else { const p = PANICS.find(q => q.label === pr); setRange(p.start, p.end, pr); slider.value = p.start; const bb = L.latLngBounds(P.filter(q => q.y >= p.start && q.y <= p.end).map(q => [q.lat, q.lon])); } });
+  slider.oninput = () => { stop(); const y = +slider.value; setRange(mode === "upto" ? 1563 : y, y, "slider"); };
+  document.querySelectorAll("[data-md]").forEach(e => e.onclick = () => { mode = e.dataset.md; document.querySelectorAll("[data-md]").forEach(x => x.setAttribute("aria-pressed", x.dataset.md === mode)); slider.oninput(); });
+  const bd = document.getElementById("bdens"); bd.onclick = () => { showDens = !showDens; bd.setAttribute("aria-pressed", showDens); drawDens(); };
+  const bp = document.getElementById("bplay");
+  function stop() { if (timer) { clearInterval(timer); timer = null; bp.textContent = "▶ Play"; } }
+  bp.onclick = () => { if (timer) return stop(); let y = preset === "slider" && +slider.value < 1736 ? +slider.value : 1563; bp.textContent = "❚❚ Pause";
+    timer = setInterval(() => { slider.value = y; setRange(mode === "upto" ? 1563 : y, y, "slider"); y++; if (y > 1736) stop(); }, reduce ? 400 : 140); };
+  const pm = L.marker([R.pendle.lat, R.pendle.lon], { icon: L.divIcon({ className: "", html: '<div style="width:14px;height:14px;transform:rotate(45deg);background:var(--gold);border:2px solid var(--bg)"></div>', iconSize: [14, 14], iconAnchor: [7, 7] }) }).addTo(map);
+  pm.bindPopup(`<b>Pendle, Lancashire, 1612</b>England, not part of the Survey.<br>${R.pendle.accused} accused, ${R.pendle.executed} hanged.<br><span style="color:var(--muted)">Source: Wikipedia, "Pendle witches"</span>`);
+  map.on("click", () => select(null));
+  window.__restyle = () => { for (const k in C) delete C[k]; tiles.setUrl(tileUrl()); draw(); };
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", window.__restyle);
+  MAP.show = pr => { document.querySelector(`[data-pr="${pr}"]`).click(); document.getElementById("mapsec").scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); };
+  MAP.select = name => { const g = groups(filt()).find(g => g.place === name); if (g) { map.setView([g.lat, g.lon], 9, { animate: false }); select(g); } return !!g; };
+  MAP.dens = () => bd.click();
+  setRange(1563, 1736, "all"); select(null);
+})();
+
+/* ===== panic cards with small maps ===== */
+(() => { const box = document.getElementById("panics"), co = D.coast;
+  const lat0 = 56.8, kx = Math.cos(lat0 * Math.PI / 180), B = { w: -7.6, e: -0.7, s: 54.6, n: 60.9 };
+  const VW = 200, VH = VW * (B.n - B.s) / ((B.e - B.w) * kx), px = (lo, la) => [(lo - B.w) * kx / ((B.e - B.w) * kx) * VW, (B.n - la) / (B.n - B.s) * VH];
+  let land = ""; co.features.forEach(f => { const g = f.geometry, polys = g.type === "Polygon" ? [g.coordinates] : g.coordinates; polys.forEach(pl => pl.forEach(ring => { if (ring.length < 4) return; land += "M" + ring.map(c => px(c[0], c[1]).map(v => v.toFixed(1)).join(" ")).join("L") + "Z"; })); });
+  PANICS.forEach(p => { const d = document.createElement("div"); d.className = "pc";
+    const pts = P.filter(q => q.y >= p.start && q.y <= p.end), g = new Map(); pts.forEach(q => { const k = q.lat + "," + q.lon; g.set(k, (g.get(k) || 0) + 1); });
+    const dots = [...g.entries()].map(([k, n]) => { const [la, lo] = k.split(",").map(Number); const [x, y] = px(lo, la); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(0.9 + Math.sqrt(n) * 0.85).toFixed(2)}"/>`; }).join("");
+    const [ex, ey] = px(-3.1883, 55.9533);
+    d.innerHTML = `<div class="lb">${p.label}</div><h3>${esc(p.title)}</h3><div class="big">${fmt(p.people)}<small>people accused</small></div>
+      <svg viewBox="0 0 ${VW} ${VH.toFixed(0)}" role="img" aria-label="Map of accused in the ${p.label} panic"><path d="${land}" fill="var(--land)" stroke="var(--border)" stroke-width=".5"/><g fill="var(--hot)" fill-opacity=".55" stroke="var(--hot)" stroke-width=".4">${dots}</g><circle cx="${ex}" cy="${ey}" r="2" fill="none" stroke="var(--fg)" stroke-width=".8"/><text x="${ex + 4}" y="${ey + 9}" style="font-size:7px;fill:var(--muted)">Edinburgh</text></svg>
+      <dl><dt>Women (of known sex)</dt><dd>${pc(p.women_share)}</dd><dt>Executed, of known outcome</dt><dd>${p.executed} of ${p.outcome_known}</dd><dt>Within 50 km of Edinburgh</dt><dd>${pc(p.within50_share)}</dd><dt>Top counties</dt><dd>${p.top_counties.slice(0, 3).map(c => esc(c.county)).join(", ")}</dd>
+      <dt>Onset year, annual temp.</dt><dd style="color:${p.t_annual_onset < 0 ? "var(--cold)" : "var(--warm)"}">${sg(p.t_annual_onset)} °C</dd><dt>Coldness rank of onset year</dt><dd>${p.onset_cold_rank} of 174</dd><dt>Year before, annual temp.</dt><dd style="color:${p.t_annual_prev < 0 ? "var(--cold)" : "var(--warm)"}">${sg(p.t_annual_prev)} °C</dd></dl>
+      <button class="btn">Show on the map</button>`;
+    d.querySelector("button").onclick = () => MAP.show && MAP.show(p.label); box.appendChild(d); });
+  /* sixth card: the years between panics */
+  (() => { const q = R.nonpanic, d = document.createElement("div"); d.className = "pc"; d.style.borderTopColor = "var(--ash)";
+    const pts = P.filter(x => !inPanic(x.y)), g = new Map(); pts.forEach(x => { const k = x.lat + "," + x.lon; g.set(k, (g.get(k) || 0) + 1); });
+    const dots = [...g.entries()].map(([k, n]) => { const [la, lo] = k.split(",").map(Number); const [x, y] = px(lo, la); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(0.9 + Math.sqrt(n) * 0.6).toFixed(2)}"/>`; }).join("");
+    d.innerHTML = `<div class="lb" style="color:var(--muted)">The other ${174 - R.series.panic_year_count} years</div><h3>Between the panics</h3><div class="big">${fmt(q.people)}<small>people accused</small></div>
+      <svg viewBox="0 0 ${VW} ${VH.toFixed(0)}" role="img" aria-label="Map of accused outside the panic years"><path d="${land}" fill="var(--land)" stroke="var(--border)" stroke-width=".5"/><g fill="var(--ash)" fill-opacity=".6" stroke="var(--ash)" stroke-width=".4">${dots}</g></svg>
+      <dl><dt>Women (of known sex)</dt><dd>${pc(q.women_share)}</dd><dt>Executed, of known outcome</dt><dd>${q.executed} of ${q.outcome_known}</dd><dt>Within 50 km of Edinburgh</dt><dd>${pc(q.within50_share)}</dd><dt>Top counties</dt><dd>${q.top_counties.slice(0, 3).map(c => esc(c.county)).join(", ")}</dd></dl>`;
+    box.appendChild(d); })();
+})();
+
+/* ===== superposed epoch ===== */
+(() => { let season = "annual", kind = "anomaly"; const box = document.getElementById("sea"), note = document.getElementById("seanote");
+  document.querySelectorAll("[data-ss]").forEach(b => b.onclick = () => { season = b.dataset.ss; document.querySelectorAll("[data-ss]").forEach(x => x.setAttribute("aria-pressed", x.dataset.ss === season)); redraw(); });
+  document.querySelectorAll("[data-sk]").forEach(b => b.onclick = () => { kind = b.dataset.sk; document.querySelectorAll("[data-sk]").forEach(x => x.setAttribute("aria-pressed", x.dataset.sk === kind)); redraw(); });
+  const redraw = resp(box, (W, nar) => { const r = R.sea.res[season + "|" + kind], L0 = R.sea.lags, H = nar ? 260 : 300, m = { l: 46, r: 12, t: 16, b: 44 };
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Average temperature anomaly in the years around the five panic onsets, with the range expected by chance" }, box);
+    const all = [...r.lo, ...r.hi, ...r.comp], mx = Math.max(.4, Math.ceil(Math.max(...all.map(Math.abs)) * 5) / 5);
+    const X = l => m.l + (l - L0[0]) / (L0[L0.length - 1] - L0[0]) * (W - m.l - m.r), Y = v => m.t + (mx - v) / (2 * mx) * (H - m.t - m.b);
+    for (let v = -mx; v <= mx + 1e-9; v += mx / 2) { el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: Math.abs(v) < 1e-9 ? "var(--fg)" : "var(--rule)" }, svg); lbl(svg, m.l - 6, Y(v) + 4, (v > 1e-9 ? "+" : v < -1e-9 ? "−" : "") + Math.abs(v).toFixed(1), "lab m s", "end"); }
+    el("rect", { x: X(-.5), y: m.t, width: X(.5) - X(-.5), height: H - m.t - m.b, fill: "var(--tint)" }, svg);
+    el("path", { d: "M" + L0.map((l, i) => `${X(l)} ${Y(r.hi[i])}`).join("L") + "L" + L0.map((l, i) => `${X(l)} ${Y(r.lo[i])}`).reverse().join("L") + "Z", fill: "var(--ash)", opacity: .22 }, svg);
+    el("path", { d: "M" + L0.map((l, i) => `${X(l)} ${Y(r.comp[i])}`).join("L"), fill: "none", stroke: "var(--fg)", "stroke-width": 2 }, svg);
+    L0.forEach((l, i) => { const v = r.comp[i]; const c = el("circle", { cx: X(l), cy: Y(v), r: 5.5, fill: v < 0 ? "var(--cold)" : "var(--warm)", stroke: "var(--bg)", "stroke-width": 1.5 }, svg);
+      hover(c, `<b>${l === 0 ? "Onset year" : Math.abs(l) + (Math.abs(l) === 1 ? " year " : " years ") + (l < 0 ? "before" : "after")}</b><br>Average of five panics: ${sg(v)} °C<br>95% of random sets of five years: ${sg(r.lo[i])} to ${sg(r.hi[i])}`);
+      if (!nar || l % 2 === 0 || l === -1) lbl(svg, X(l), H - m.b + 16, l === 0 ? "onset" : (l > 0 ? "+" : "−") + Math.abs(l), "lab m s", "middle"); });
+    lbl(svg, (W + m.l) / 2, H - 8, "Years from the start of each panic", "lab m s", "middle");
+    lbl(svg, m.l + 4, m.t + 12, "°C, " + (kind === "anomaly" ? "from the 1563 to 1736 mean" : "from the 31-year running mean"), "lab m s");
+    note.innerHTML = `${SEAS[season]}, ${kind === "anomaly" ? "anomaly" : "year-to-year part"}. Chance of a value this cold or colder from five random years: onset year ${r.p_cold_lag0.toFixed(3)}, year before ${r.p_cold_lag_1.toFixed(3)}, three years up to onset ${r.p_cold_window.toFixed(3)}.`; });
+})();
+
+/* ===== correlation grid ===== */
+(() => { const t = document.getElementById("cg"), S = ["annual", "winter", "spring", "summer", "autumn"];
+  const cell = c => { const a = Math.min(1, Math.abs(c.spearman) / .2), bg = c.spearman < 0 ? `color-mix(in srgb,var(--cold) ${Math.round(a * 45)}%,var(--card))` : `color-mix(in srgb,var(--warm) ${Math.round(a * 45)}%,var(--card))`; return `<td class="c" style="background:${bg}">${sg(c.spearman)}<small>p ${c.p_circular.toFixed(2)}</small></td>`; };
+  const get = (s, l, k) => R.corr.find(c => c.season === s && c.lag === l && c.kind === k);
+  t.innerHTML = `<thead><tr><th></th><th colspan="3" style="text-align:center">Anomaly</th><th colspan="3" style="text-align:center">Year-to-year</th></tr><tr><th>Season</th>${[0, 1, 2, 0, 1, 2].map(l => `<th class="num" style="text-align:center">${l === 0 ? "same yr" : "lag " + l}</th>`).join("")}</tr></thead><tbody>` +
+    S.map(s => `<tr><td>${SEAS[s].replace(" (DJF)", "").replace(" (JJA)", "")}</td>${[0, 1, 2].map(l => cell(get(s, l, "anomaly"))).join("")}${[0, 1, 2].map(l => cell(get(s, l, "year_to_year"))).join("")}</tr>`).join("") + "</tbody>";
+})();
+
+/* ===== decades scatter ===== */
+resp(document.getElementById("dec"), (W, nar) => { const rows = R.decadal.rows, H = nar ? 270 : 300, m = { l: 48, r: 18, t: 14, b: 44 };
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "People accused per decade against mean European temperature of that decade" }, document.getElementById("dec"));
+  const tx = rows.map(r => r.t_annual), lo = Math.floor(Math.min(...tx) * 10) / 10 - .05, hi = Math.ceil(Math.max(...tx) * 10) / 10 + .05;
+  const X = v => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r), Y = v => m.t + (Math.log10(1000) - Math.log10(v)) / (Math.log10(1000) - 1) * (H - m.t - m.b);
+  [10, 30, 100, 300, 1000].forEach(v => { el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: "var(--rule)" }, svg); lbl(svg, m.l - 6, Y(v) + 4, fmt(v), "lab m s", "end"); });
+  for (let v = Math.ceil(lo * 10) / 10; v <= hi; v += .1) lbl(svg, X(v), H - m.b + 16, v.toFixed(1), "lab m s", "middle");
+  lbl(svg, (W + m.l) / 2, H - 8, "Decade mean European annual temperature, °C", "lab m s", "middle");
+  const boxes = [];
+  rows.forEach(r => { const c = el("circle", { cx: X(r.t_annual), cy: Y(r.people), r: 6, fill: "var(--hot)", opacity: .85, stroke: "var(--bg)", "stroke-width": 1.5 }, svg);
+    hover(c, `<b>${r.decade}s</b><br>${fmt(r.people)} people accused<br>Mean annual temperature ${r.t_annual.toFixed(2)} °C`);
+    const s = r.decade + "s", w = s.length * 7.2, cand = [[X(r.t_annual) + 9, Y(r.people) + 4], [X(r.t_annual) - 9 - w, Y(r.people) + 4], [X(r.t_annual) - w / 2, Y(r.people) - 10], [X(r.t_annual) - w / 2, Y(r.people) + 18]];
+    const ok = cand.find(([x, y]) => x > m.l && x + w < W && !boxes.some(b => x < b[0] + b[2] && x + w > b[0] && y - 11 < b[1] && y > b[1] - 11) && !rows.some(o => Math.abs(X(o.t_annual) - (x + w / 2)) < w / 2 + 6 && Math.abs(Y(o.people) - (y - 4)) < 9));
+    if (ok) { boxes.push([ok[0], ok[1], w]); lbl(svg, ok[0], ok[1], s, "lab s"); } });
+});
+
+/* ===== outcomes ===== */
+resp(document.getElementById("out"), (W, nar) => { const o = R.outcomes, order = ["Executed", "Acquitted or released", "Fled or declared fugitive", "Other punishment", "Action dropped", "Guilty, sentence not recorded", "Not recorded", "No trial record"];
+  const lab = { "Not recorded": "Trial, outcome not recorded", "No trial record": "No trial in the record" }, rowH = 30, lw = nar ? 150 : 220, m = { l: lw, r: 50, t: 4, b: 8 }, H = order.length * rowH + m.t + m.b;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Outcomes recorded for named accused" }, document.getElementById("out"));
+  const mx = Math.max(...order.map(k => o[k] || 0)), X = v => m.l + v / mx * (W - m.l - m.r);
+  order.forEach((k, i) => { const y = m.t + i * rowH, v = o[k] || 0; lbl(svg, m.l - 10, y + 19, nar ? (lab[k] || k).replace("Guilty, sentence not recorded", "Guilty, no sentence").replace("Fled or declared fugitive", "Fled, fugitive").replace("Acquitted or released", "Acquitted, released").replace("Trial, outcome not recorded", "Outcome not recorded") : (lab[k] || k), "lab", "end");
+    const r = el("rect", { x: m.l, y: y + 6, width: Math.max(1.5, X(v) - m.l), height: rowH - 12, fill: k === "Executed" ? "var(--hot)" : i >= 6 ? "var(--rule)" : "var(--ash)" }, svg);
+    hover(r, `<b>${lab[k] || k}</b><br>${fmt(v)} named accused`); lbl(svg, X(v) + 6, y + 19, fmt(v), "lab b s"); });
+});
+</script>
+</body>
+</html>
